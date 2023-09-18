@@ -4,7 +4,7 @@ using namespace std;
 // {
 //     return (x | (1 << k)); // 1 ke kth gor soraici then x ar value sathe or koreci
 // } // tahole kth value ta change hoye jabe
-
+ 
 // int unset_kth_bit(int x, int k)
 // {
 //     return (x & (~(1 << k))); // trun of a bit in a number
