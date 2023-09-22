@@ -18,7 +18,8 @@ typedef unsigned long long int llu;
 #define rc ((n * 2) + 1)
 int check_value(int x, int k)
 {                        // x ar last digit ak ak kore ber korteci then check korteci if last digit true then return 1 otherwise return 0 and and operator use use the value of and
-    return (x >> k) & 1; // last digit check
+    return (x >> k) & 1; // last digit check//that means holo x ar value ta bar bar right ar dike jabe//tahole ami last ar value ta pabo
+    
 }
 int cout_on_bits(int x)
 {
