@@ -7,10 +7,10 @@ int print_bits(int x, int k)
 // all on bits check
 void print_on_bits(int x)
 {
-    for (int k = 0; k <= 32; k++) // 32th ta holo sing operator
+    for (int k = 0; k <= 32; k++) // 32th no bits holo sing operator
     {
         if (print_bits(x, k)) // ar kth bar amra right shift korteci
-            cout << k << " ";
+            cout << k << " "; // value ta print korteci jei sokol index ar value on oi sokol index print korteci
     }
     cout << endl;
 }
