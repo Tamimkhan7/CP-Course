@@ -1,9 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-// void diagonalDiffenence(int ar[], int n)
-// {
-
-// }
 int main()
 {
     int n;
@@ -16,21 +12,17 @@ int main()
             cin >> ar[i][j];
         }
     }
-    // diagonalDiffenence(ar, n);
-
+    // primary diagonal
     int ans = 0;
     for (int i = 0; i < n; i++)
     {
-        for (int j = i; j <= i; j++)
-        {
-            ans += ar[i][j];
-        }
+        ans += ar[i][i];
     }
+    // secondary diagonal
     int ans2 = 0;
-    for (int i = 0, j = n - 1; i < n, j >= 0; i++, j--)
+    for (int i = 0; i < n; i++)
     {
-        ans2 += ar[i][j];
+        ans2 += ar[i][n - (i + 1)]; // mane holo ami n ar value take ak kore komiye dicii diye row column ar index ar value count korteci
     }
-    int res = ans - ans2;
-    cout << abs(res) << endl;
+    cout << abs(ans - ans2) << endl;
 }

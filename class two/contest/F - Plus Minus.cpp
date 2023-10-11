@@ -2,22 +2,21 @@
 using namespace std;
 void plusMinus(int ar[], int n)
 {
-    int count = 0, ans = 0, zero_count = 0;
+    int positive_numbers = 0, negative_numbers = 0, zero = 0;
     for (int i = 0; i < n; i++)
     {
         if (ar[i] > 0)
-            count++;
+            positive_numbers++;
         else if (ar[i] < 0)
-            ans++;
+            negative_numbers++;
         else
-            zero_count++;
+            zero++;
     }
-    double positive_ration = double(count) / double(n);
-    double nagative_ration = double(ans) / double(n);
-    double zero_ration = double(zero_count) / double(n);
-    printf("%.6lf\n", positive_ration);
-    printf("%.6lf\n", nagative_ration);
-    printf("%.6lf\n", zero_ration);
+    // setprecision upore use korle nice joto sob ace baki sobar jonno kaj korbe
+    cout << fixed << setprecision(6);             // setprecision use kora hoy ami koy ghor projnto print dite cacci ta korar jonno setpricision use kora hoy
+    cout << (double)positive_numbers / n << endl; // akta value ke typecust korle baki sokol value type cust hoye jay
+    cout << (double)negative_numbers / n << endl;
+    cout << (double)zero / n << endl;
 }
 int main()
 {

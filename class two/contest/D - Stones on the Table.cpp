@@ -15,7 +15,6 @@ int main()
         int end_of_block = i;
         while (i < n)
         {
-            cout << s[i] << endl;
             if (s[i] == s[start_of_block])
             {
                 end_of_block = i;
@@ -26,8 +25,8 @@ int main()
                 break;
             }
         }
-        int stones_in_this_block = end_of_block - start_of_block + 1;
-        ans += stones_in_this_block - 1;
+        int stones_in_this_block = end_of_block - start_of_block;
+        ans += stones_in_this_block;
         start_of_block = end_of_block + 1;
     }
     cout << ans << endl;
