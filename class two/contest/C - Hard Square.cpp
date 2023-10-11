@@ -4,16 +4,15 @@ int main()
 {
     int n;
     cin >> n;
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++) // i always row define kore
     {
-        for (int k = 1; k < n - 1; k++)
+        for (int j = 1; j <= n; j++) // j always column define kore
         {
-            cout << " ";
-            for (int j = 0; j < n; j++)
-            {
+            if (i == 1 || i == n || j == 1 || j == n)
                 cout << "* ";
-            }
-            cout << endl;
+            else
+                cout << "  ";
         }
+        cout << endl;
     }
 }
