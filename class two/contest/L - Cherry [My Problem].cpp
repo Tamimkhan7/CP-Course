@@ -9,20 +9,32 @@ int main()
     {
         int n;
         cin >> n;
-        int a[n];
+        int a[n + 1];
         for (int i = 0; i < n; i++)
             cin >> a[i];
-        ll maxi_value = 0, maxi;
+        long long int maximum_value = 0, maxi;
         for (int i = 0; i < n; i++)
         {
-            for (int j = i + 1; j < n; j++)
+            for (int j = i; j < n; j++)
             {
-                maxi = a[i] * a[j];
-                // cout << maxi << endl;
-                maxi_value = max(maxi_value, maxi);
+                vector<long long int> v;
+                for (int k = i; k <= j; k++)
+                {
+                    int x = a[k];
+                    v.push_back(x);
+                }
+                sort(v.begin(), v.end());
+                if (v.size() > 1)
+                {
+                    maxi = (v[0] * v[v.size() - 1]);
+                    maximum_value = max(maximum_value, maxi);
+                }
+                else if (v.size() < 1)
+                {
+                    maximum_value = v[0];
+                }
             }
         }
-        cout << maxi_value << endl;
+        cout << maximum_value << endl;
     }
 }
-// hoy na pore korbo

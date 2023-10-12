@@ -4,15 +4,13 @@ int main()
 {
     int n, x;
     cin >> n >> x;
-    vector<int> v(n);
+    int v[n];
     for (int i = 0; i < n; i++)
         cin >> v[i];
 
     for (int i = 0; i < n; i++)
     {
-        if (v[i] == x)
-            v.pop_back();
-        else
+        if (v[i] != x)
             cout << v[i] << " ";
     }
     cout << endl;

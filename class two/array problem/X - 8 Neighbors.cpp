@@ -1,31 +1,46 @@
 #include <bits/stdc++.h>
 using namespace std;
+const int N = 105;
+char s[N][N];
+int n, m;
+bool is_inside(int i, int j)
+{
+    if (i >= 0 and i < n and j >= 0 and j < m)
+    {
+        return true;
+    }
+    return false;
+}
+bool is_valid(int i, int j)
+{
+    if (is_inside(i, j) == false) // range ar bahire kina check korteci
+        return true;              // kew range ar bahire thakle se obossi amar potibesi
+    if (s[i][j] == 'x')
+    {
+        return true;
+    }
+    return false;
+}
 int main()
 {
-    int n, m;
     cin >> n >> m;
-    int a[n][m];
-    for (int i = 1; i <= n; i++)
+    for (int i = 0; i < n; i++)
     {
-        for (int j = 1; j <= m; j++)
-        {
-            cin >> a[i][j];
-        }
+        cin >> s[i];
     }
+    // cout << endl;
+
     int x, y;
     cin >> x >> y;
-    int num = a[x][y];
-    cout << num << endl;
-    for (int i = x - 1; i <= x + 1; i++)
+    --x, --y;
+    // cout << s[x][y] << endl;
+
+    if (is_valid(x - 1, y) and is_valid(x, y - 1) and is_valid(x + 1, y) and is_valid(x, y + 1) and is_valid(x - 1, y - 1) and is_valid(x - 1, y + 1) and is_valid(x + 1, y - 1) and is_valid(x + 1, y + 1))
     {
-        int c = 0;
-        for (int j = y - 1; j <= y + 1; j++)
-        {
-            if (a[i][j] == num)
-                c++;
-            else
-                c++;
-        }
-        cout << c << endl;
+        cout << "yes" << endl;
+    }
+    else
+    {
+        cout << "no" << endl;
     }
 }

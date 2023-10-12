@@ -8,30 +8,42 @@ int main()
     {
         int n;
         cin >> n;
-        vector<int> v(n);
-        for (int i = 0; i < n; i++)
-            cin >> v[i];
+        // vector<int> v(n);
+        // for (int i = 0; i < n; i++)
+        //     cin >> v[i];
+        // int ans = 0;
+        // for (int i = 0; i < n - 1; i++)
+        // {
+        //     if (v[i] < v[i + 1])
+        //     {
+        //         int res = v[i + 1] - v[i];
+        //         if (res > 1)
+        //         {
+        //             ans += (v[i + 1] - v[i]);
+        //             ans -= 1;
+        //         }
+        //     }
+        // }
+
+        // if (v[0] != 1)
+        // {
+        //     ans += v[0] - 1;
+        //     cout << ans << endl;
+        // }
+        // else
+        //     cout << ans << endl;
+        // another way te try kori
+        int a[n + 1];
+        for (int i = 1; i <= n; i++)
+            cin >> a[i];
         int ans = 0;
-        for (int i = 0; i < n - 1; i++)
+        for (int i = 1; i <= n; i++)
         {
-            if (v[i] < v[i + 1])
+            if (a[i] > i)
             {
-                int res = v[i + 1] - v[i];
-                if (res > 1)
-                {
-                    ans += (v[i + 1] - v[i]);
-                    ans -= 1;
-                }
+                ans = max(ans, a[i] - i);
             }
         }
-
-        if (v[0] != 1)
-        {
-            ans += v[0] - 1;
-            cout << ans << endl;
-        }
-        else
-            cout << ans << endl;
+        cout << ans << endl;
     }
 }
-//mistake ace
