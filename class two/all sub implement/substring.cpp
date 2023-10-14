@@ -11,7 +11,7 @@ int main()
         {
             for (int k = i; k <= j; k++)
             {
-                cout << s[k] << " ";
+                cout << s[k];
             }
             cout << endl;
         }
