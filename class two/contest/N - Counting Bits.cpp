@@ -24,8 +24,7 @@ void solve()
     int count = 0;
     for (int i = 1; i <= n; i++)
     {
-        int res = bitcount(i);
-        count += res;
+        count += bitcount(i);
     }
     cout << count << endl;
 }
