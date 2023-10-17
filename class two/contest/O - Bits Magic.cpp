@@ -5,21 +5,6 @@ using namespace std;
     ios_base::sync_with_stdio(0); \
     cin.tie(0);                   \
     cout.tie(0);
-#define sq(x) (x) * (x)
-#define PI acos(-1.0)
-#define all(x) x.begin(), x.end()
-#define mod 1000000007
-typedef long long int ll;
-typedef unsigned long long int llu;
-
-void solve()
-{
-    llu n, k;
-    cin >> n >> k;
-
-    cout << (n | (1u << k)) << endl;
-}
-
 int main()
 {
     faster;
@@ -27,7 +12,10 @@ int main()
     cin >> t;
     while (t--)
     {
-        solve();
+        unsigned int n, k; // unsigned data type range of the value <2^32, and integer data tpye range is <2^31,
+        // tai amader value ta maximum 31 ta bit count korte pare tai ami unsigned nile kaj ta kre pelte parbo
+        cin >> n >> k;
+        cout << (n | (1 << k)) << endl; // if kth bit is off then we convert the kth bit, if kth bit is on then we will continue
     }
     return 0;
 }

@@ -21,19 +21,17 @@ int main()
     faster;
     string s;
     cin >> s;
-    int x, ans = 0;
+    int x = -1, ans = 0;
     int len = s.size();
     for (int i = 0; i < len; i++)
     {
         if (s[i] == '0')
         {
             x = i;
-            ans++;
-            if (ans >= 1)
-                break;
+            break;
         }
     }
-    if (ans >= 1)
+    if (x != -1)
     {
         s.erase(s.begin() + x);
         cout << s << endl;

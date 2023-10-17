@@ -24,7 +24,8 @@ void solve()
     int count = 0;
     for (int i = 1; i <= n; i++)
     {
-        count += bitcount(i);
+        // count += bitcount(i); // koyta on bit ace ta ber korar jonno ai function ta use kora
+        count += __builtin_popcount(i); // aita akta building function, aita dio oh check kora hoy, koyta bit on ace ar koyta bit off ace
     }
     cout << count << endl;
 }
