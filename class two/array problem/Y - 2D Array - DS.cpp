@@ -1,41 +1,27 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int N = 6;
-void solve(int a[N][N])
-{
-    int ans = 0;
-    for (int i = 2; i < N; i++)
-    {
-        for (int j = 2; j < N; j++)
-        {
-            cout << i << " " << j << endl;
-            cout << a[i][j] << " " << endl;
-            cout << ans << " " << endl;
-            ans = 0;
-
-            ans += a[i][j];
-            ans += a[i][j - 1];
-            ans += a[i][j + 1];
-            ans += a[i - 1][j - 1];
-            ans += a[i - 1][j];
-            ans += a[i - 1][j + 1];
-            ans += a[i + 1][j - 1];
-            ans += a[i + 1][j];
-            ans += a[i + 1][j + 1];
-        }
-        cout << endl;
-    }
-}
 int main()
 {
-    int a[N][N];
-    for (int i = 1; i <= N; i++)
+    int a[7][7];
+    for (int i = 0; i < 6; i++)
     {
-        for (int j = 1; j <= N; j++)
+        for (int j = 0; j < 6; j++)
         {
             cin >> a[i][j];
         }
     }
-    solve(a);
+    int ans = -1e8;
+    for (int i = 1; i <= 4; i++)
+    {
+        for (int j = 1; j <= 4; j++)
+        {
+            int sum = 0;
+            sum += a[i][j];                                         // center
+            sum += a[i - 1][j] + a[i - 1][j - 1] + a[i - 1][j + 1]; // top
+
+            sum += a[i + 1][j] + a[i + 1][j - 1] + a[i + 1][j + 1]; // down
+            ans = max(sum, ans);
+        }
+    }
+    cout << ans << endl;
 }
-// thanda mathay korte hobe

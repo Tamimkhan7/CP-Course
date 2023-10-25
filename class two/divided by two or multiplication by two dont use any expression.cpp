@@ -14,7 +14,7 @@ int multiplication_by_two(int x)
 
 int main()
 {
-    int x = 15;
+    int x = 7;
 
     cout << divided_by_two(x) << endl;
 
