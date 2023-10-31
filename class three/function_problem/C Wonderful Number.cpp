@@ -1,24 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
-void binary_represent(int n)
+bool binary_represent(int n)
 {
-    vector<int>v;
-    int i=0;
-    while(n>-1)
+    string s,ss;
+    int x;
+    while(n>0)
     {
-        v[i] =(n%2);
+        x= n%2;
+        s+=to_string(x);
         n/=2;
     }
-    cout<<v.size();
+    ss=s;
+    reverse(s.begin(), s.end());
+    if(ss==s)return true;
+    else return false;
 }
-void solve()
+void solve(int n)
 {
-    int n;
-    cin>>n;
-    if(n%2!=0)binary_represent(n);
+
+    if(n%2)
+    {
+        if(binary_represent(n))
+            cout<<"YES"<<endl;
+        else cout<<"NO"<<endl;
+    }
     else cout<<"NO"<<endl;
 }
 int main()
 {
-    solve();
+    int n;
+    cin>>n;
+    solve(n);
 }
