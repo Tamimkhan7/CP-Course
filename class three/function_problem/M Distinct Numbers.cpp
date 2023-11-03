@@ -7,15 +7,13 @@ void solve()
     int a[n];
     for(int i=0; i<n; i++)cin>>a[i];
 
-    sort(a, a+n);
-    int ans =0;
-    for(int i=0; i<n-1; i++)
+    set<int>s;
+    for(int i=0; i<n; i++)
     {
-        if(a[i]!=a[i+1])ans++;
+        if(a[i] !=0)
+            s.insert(a[i]);
     }
-    ans++;
-    cout<<ans<<endl;
-
+    cout<<s.size()<<endl;
 }
 int main()
 {
