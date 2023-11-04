@@ -4,32 +4,25 @@ void solve()
 {
     int n;
     cin>>n;
-    if(n%10==0)
-    {
-        cout<<n<<endl;
-        return;
-    }
-    int res,ans=0;
+    vector<int>v;
+    int pw =1;
     while(n>0)
     {
         if(n%10)
         {
-            ans++;
-            res = n%10;
-            n/=10;
-            if(ans>1)
-            {
-                cout<<res;
-                for(int i=0; i<ans-1; i++)cout<<0;
-            }
-            cout<<" ";
+            int x =(n%10)*pw;
+            v.push_back(x);
         }
-        else
-        {
-            cout<<n<<endl;
-            return;
-        }
+        pw*=10;
+        n/=10;
+
     }
+    cout<<v.size()<<endl;
+    for(int i=0; i<v.size(); i++)
+    {
+        cout<<v[i]<<" ";
+    }
+    cout<<endl;
 }
 int main()
 {
@@ -41,3 +34,4 @@ int main()
     }
 
 }
+
