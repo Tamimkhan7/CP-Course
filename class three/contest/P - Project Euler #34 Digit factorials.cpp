@@ -5,23 +5,33 @@ using namespace std;
 
 int main()
 {
+    int n,x;
+    cin>>n;
     string s,ss;
-    cin>>s;
-    int len = s.size();
-    int i=0;
-    ll sum =0;
-    while(len>i)
+    ll ans=0;
+    for(int i=10; i<=n; i++)
     {
-        ss = s[i];
-        ll ans = stoi(ss);
-        ll fact =1;
-        for(int i=1; i<=ans; i++)
+        s = to_string(i);
+        ll sum=0;
+        for(int j=0; j<s.size(); j++)
         {
-            fact= (fact*i)%mod;
+            ss = s[j];
+            x = stoi(ss);
+            int fact =1;
+
+            //find factorial
+            for(int k=1; k<=x; k++)
+            {
+                fact*=k;
+            }
+            sum +=fact;
         }
-        cout<<fact<<endl;
-        sum +=fact;
-        i++;
+        //check their digit factorial sum divided by number
+        if(sum%i==0)
+        {
+            ans +=i;
+        }
     }
-    cout<<sum<<endl;
+    cout<<ans<<endl;
+
 }
