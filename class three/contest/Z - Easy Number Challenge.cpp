@@ -12,10 +12,12 @@ int main()
         {
             for(int k=1; k<=c; k++)
             {
-                int x = (i*j*k)%mod;
-                sum =(sum+(i*j*k))%mod;
-                cout<<x<<endl;
+                if(a%i==0 && b%j==0 && c%k==0)
+                {
+                    sum =(sum+(i*j*k))%mod;
+                }
             }
         }
     }
+    cout<<sum<<endl;
 }
