@@ -53,18 +53,25 @@ void maximum_divisor(int a[],int n)
 {
 
     sort(a, a+n, greater<int>());
+    int ans, maxi=-1;
     for(int i=0; i<n; i++)
     {
+        int ct=0;
         int x = a[i];
-        for(int j=2; j<=sqrt(x); j++)
+        for(int j=1; j<=(x); j++)
         {
             if(x%j==0)
             {
-                cout<<"The number that has the maximum number of divisors : "<<x<<endl;
-                return;
+                ct++;
             }
         }
+        if(ct>maxi)
+        {
+            maxi = ct;
+            ans = x;
+        }
     }
+    cout<<"The number that has the maximum number of divisors : "<<ans<<endl;
 }
 int main()
 {

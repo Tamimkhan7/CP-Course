@@ -1,13 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
-void solve()
+int x,y;
+void swap_value()
 {
-    int x,y;
-    cin>>x>>y;
-    cout<<y<<" "<<x<<endl;
+    int temp = x;
+    x =y;
+    y =temp;
 }
 int main()
 {
-
-    solve();
+    cin>>x>>y;
+    swap_value();
+    cout<<x<<" "<<y<<endl;
 }

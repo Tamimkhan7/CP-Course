@@ -1,27 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
-void solve()
+#define ll long long
+ll get_pow(int x, int n)
 {
-    int x,n;
-    cin>>x>>n;
-    long long res, ans=0;
+    ll power=1;
+    for(int i=0; i<n; i++)
+    {
+        power*=x;//find the x power of nth power
+    }
+    return power;
+}
+ll solve(int x, int n)
+{
+    ll res=0;
     for(int i=0; i<=n; i+=2)
     {
-        if(i==0)
-        {
-            res = pow(x,i);
-            res -=1;
-            ans +=res;
-        }
-        else
-        {
-            res = pow(x,i);
-            ans +=res;
-        }
+        res += get_pow(x,i);
     }
-    cout<<ans<<endl;
+    res -=1;//-1 for (x^0-1)
+    return res;
 }
 int main()
 {
-    solve();
+    int x,n;
+    cin>>x>>n;
+    cout<< solve(x,n)<<endl;
 }

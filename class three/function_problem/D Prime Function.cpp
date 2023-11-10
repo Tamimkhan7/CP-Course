@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
-void solve()
+bool is_prime(int n)
 {
-    int n;
-    cin>>n;
     int flag =0;
     if(n==1)flag=1;
-    for(int i=2; i<=sqrt(n); i++)
+    for(int i=2; i*i<=(n); i++)//using loop for logn
     {
         if(n%i==0)
         {
@@ -14,13 +12,17 @@ void solve()
             break;
         }
     }
-    if(flag)cout<<"NO"<<endl;
-    else cout<<"YES"<<endl;
+    if(flag)return false;
+    else return true;
+
 }
 int main()
 {
     int t;
     cin>>t;
-    while(t--)
-        solve();
+    while(t--){
+     int n;cin>>n;
+     if(is_prime(n))cout<<"YES"<<endl;
+     else cout<<"NO"<<endl;
+    }
 }

@@ -12,7 +12,7 @@ void solve()
         sum+=a[i];
     }
     sum/=n;
-    cout<<setprecision(8);
+    cout<<fixed<<setprecision(7);
     cout<<sum<<endl;
 }
 int main()

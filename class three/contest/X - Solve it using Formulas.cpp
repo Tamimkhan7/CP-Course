@@ -1,19 +1,19 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define ll unsigned long long int
+#define ll long long
 #define mod 1000000007
 void solve()
 {
     int n;
     cin>>n;
-    ll ans=0, res=0,res2;
-    for(int i=1; i<=n;i++)
-    {
-        res +=i;
-        ans += pow(i, 2);
-    }
-    res2 = pow(res, 2)-ans;
-    cout<<res2<<endl;
+    ll ans, res,res2;
+    ans =(1LL*n*(n+1))/2;
+    ans*=ans;
+    //cout<<ans<<endl;
+    res = (1LL* n*(n+1)*(2*n+1))/6;
+    //cout<<res<<endl;
+
+    cout<<ans-res<<endl;
 }
 
 int main()

@@ -7,13 +7,18 @@ void solve()
     int a[n], b[n];
     for(int i=0; i<n; i++)cin>>a[i];
     for(int i=0; i<n; i++)cin>>b[i];
+    int c[2*n];
     for(int i=0; i<n; i++)
     {
-        cout<<b[i]<<" ";
+       c[i] = b[i];
     }
     for(int i=0; i<n; i++)
     {
-        cout<<a[i]<<" ";
+      c[n+i] = a[i];
+    }
+     for(int i=0; i<n*2; i++)
+    {
+      cout<<c[i]<<" ";
     }
     cout<<endl;
 

@@ -1,17 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
-void solve()
+int n;
+const int N=505;
+int a[N][N];
+void solve(int x,int y)
 {
-    int n,x,y;
-    cin>>n>>x>>y;
-    int a[n+1][n+1];
-    for(int i=1; i<=n; i++)
-    {
-        for(int j=1; j<=n; j++)
-        {
-            cin>>a[i][j];
-        }
-    }
 
     for(int i=1; i<=n; i++)
     {
@@ -21,6 +14,21 @@ void solve()
     {
         swap(a[i][x], a[i][y]);
     }
+
+}
+int main()
+{
+    int x,y;
+    cin>>n>>x>>y;
+    for(int i=1; i<=n; i++)
+    {
+        for(int j=1; j<=n; j++)
+        {
+            cin>>a[i][j];
+        }
+    }
+    solve(x,y);
+
     for(int i=1; i<=n; i++)
     {
         for(int j=1; j<=n; j++)
@@ -29,8 +37,4 @@ void solve()
         }
         cout<<endl;
     }
-}
-int main()
-{
-    solve();
 }
