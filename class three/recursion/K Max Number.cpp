@@ -4,15 +4,11 @@ void max_num(int a[], int n, int maxi)
 {
     if(n==1)
     {
-        if(maxi<a[n])
-        maxi = a[n];
-       cout<<maxi<<endl;
-       return;
+        maxi = max(a[n], maxi);
+        cout<<maxi<<endl;
+        return;
     }
-    if(maxi < a[n])
-    {
-        maxi = a[n];
-    }
+    maxi = max(a[n], maxi);
     max_num(a, n-1, maxi);
 //    cout<<maxi<<endl;
 

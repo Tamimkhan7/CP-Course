@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
-void sum(int a[], int n, long long int summ)
+long long int summ=0;
+void sum(int a[], int n)
 {
     if(n==1)
     {
@@ -9,7 +10,7 @@ void sum(int a[], int n, long long int summ)
         return;
     }
     summ += a[n];
-    sum(a, n-1, summ);
+    sum(a, n-1);
 //    cout<<maxi<<endl;
 
 }
@@ -19,7 +20,6 @@ int main()
     cin>>n;
     int a[n+1];
     for(int i=1; i<=n; i++)cin>>a[i];
-   long long int summ=0;
-    sum(a, n,summ);
+    sum(a, n);
 }
 

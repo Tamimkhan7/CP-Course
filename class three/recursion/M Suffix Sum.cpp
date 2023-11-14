@@ -1,25 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
-void sum(int a[], int n,int m, long long int summ)
+long long int summ=0;
+int m;
+void sum(int a[], int n)
 {
-    if(m==1)
+    if(m==n)
     {
         summ += a[n];
         cout<<summ<<endl;
         return;
     }
     summ += a[n];
-    sum(a, n-1,m-1, summ);
+    sum(a, n-1);
 //    cout<<maxi<<endl;
 
 }
 int main()
 {
-    int n,m;
+    int n;
     cin>>n>>m;
     int a[n+1];
     for(int i=1; i<=n; i++)cin>>a[i];
-    long long int summ=0;
-    sum(a, n,m,summ);
+    sum(a, n);
 }
 

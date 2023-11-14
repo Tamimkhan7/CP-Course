@@ -4,7 +4,7 @@ using namespace std;
 ll memo[40];
 ll fibo(ll n)
 {
-    if (n <= 1)
+    if (n == 1 || n==0)
         return n;
     // cout << memo[n] << " ";
     if (memo[n] != -1)

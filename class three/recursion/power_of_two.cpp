@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 int power_of_two(int n)
 {
     if (n == 0)
@@ -10,6 +11,6 @@ int power_of_two(int n)
 int main()
 {
     int n;
-    cin >> n;
-    cout << power_of_two(n) << endl;
+    cin>>n;
+    cout<<power_of_two(n)<<endl;
 }
