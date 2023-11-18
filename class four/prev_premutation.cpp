@@ -15,7 +15,7 @@ int main()
 
     //permutation korar jonno better hoy value ta sort kore neoya
     //tahole maximum time permutation dibe,, na hole lexicographically joto bar ase toto bar ai permutatioin korbe
-
+    sort(a, a+n, greater<int>());
     do
     {
         ans++;
