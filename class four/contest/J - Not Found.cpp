@@ -1,38 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long int
-
+int mem[26];
 int main()
 {
-    string s;
+    string s,c;
+    memset(mem, 0, sizeof(mem));
     cin>>s;
     int n = s.size();
-    sort(s.begin(), s.end());
-    int x,y;
-    int flag =0,ap=0;
     for(int i=0; i<n; i++)
     {
-        x = s[i]-'0';
-        y = s[i+1]-'0';
-        if((y-x)>1)
+        mem[s[i]-'a']++;
+    }
+    for(int i=0; i<26; i++)
+    {
+        if(mem[i]==0)
         {
-            flag =1;
-            string c,cc;
-            c = s[i]+1;
-            cout<<c<<'\n';
+            cout<<(char)(i+'a')<<'\n';
             return 0;
         }
     }
-    if(n==1 && s[0]!='a')
-    {
-        cout<<"a"<<endl;
-        return 0;
-    }
-    if(s[n-1]=='y')
-    {
-        cout<<"z"<<endl;
-        return 0;
-    }
-    if(!flag)cout<<"None"<<'\n';
+    cout<<"None"<<'\n';
+    return 0;
 
 }
