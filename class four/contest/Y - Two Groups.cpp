@@ -20,7 +20,10 @@ int main()
             if(a[i]>=0)sum+=a[i];
             else sum2 += a[i];
         }
-        cout<<abs(sum2+sum)<<'\n';
+        sum = abs(sum);
+        sum2 = abs(sum2);
+       if(sum>sum2)cout<<sum-sum2<<'\n';
+       else cout<<sum2-sum<<'\n';
     }
 }
 

@@ -6,12 +6,6 @@ int main()
 {
     int n,s;
     cin>>n>>s;
-    int ans=0;
-    while(s>=n)
-    {
-        ans++;
-       s-=n;
-    }
-    if(s!=0)ans++;
+  int ans = (s+n-1)/n;//ceil function ar kaj kore,
     cout<<ans<<'\n';
 }

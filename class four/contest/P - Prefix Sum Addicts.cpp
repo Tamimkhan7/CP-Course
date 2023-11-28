@@ -6,18 +6,16 @@ int px[N];
 
 void solve()
 {
-    int n,k;cin>>n>>k;
-    int a[k];
-    for(int i=0; i<k; i++)cin>>a[i];
-    px[0]=a[0];
-    for(int i=0; i<k;i++){
-       px[i]=a[i]+px[i-1];
-    }
+    int n,k;
+    cin>>n>>k;
+    int a[k+1];
+    for(int i=1; i<=k; i++)cin>>a[i];
+    int ans = a[1]-a[0];
+    int x = n-k+1;
+    while(x!=0){
 
-     for(int i=0; i<k;i++){
-      cout<<px[i]<<" ";
+
     }
-    cout<<'\n';
 
 }
 int main()

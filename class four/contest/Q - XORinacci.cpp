@@ -17,7 +17,9 @@ int main()
         ll n;
         cin>>a>>b;
         cin>>n;
-        cout<< 1LL*solve(n)<<endl;
+        if(n%3>=2) cout<< (a^b)<<endl;
+        else if(n%3==1)cout<<b<<'\n';
+        else cout<<a<<'\n';
     }
 }
 
