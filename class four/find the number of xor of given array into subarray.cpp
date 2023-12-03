@@ -12,19 +12,17 @@ int main()
     px[0]=0;
     for(int i=1; i<=n; i++)
     {
-        px[i] = px[i-1]+a[i];
+        px[i] = px[i-1]^a[i];
     }
-    int ans =0,j=0;
-    while(j<n)
+    int ans =0;
+    for(int i=1; i<=n;  i++)
     {
-        for(int i=j+1; i<=n;  i++)
+        for(int j=i; j<=n; j++)
         {
-            int rs = px[i]-px[j];
+            int rs = px[j]-px[i-1];
             if(rs%k==0)ans++;
-            //cout<<rs<<" ";
+            //cout<<px[i]<<" ";
         }
-        //cout<<endl;
-        j++;
     }
     cout<<ans<<'\n';
 }
