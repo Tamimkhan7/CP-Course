@@ -5,7 +5,6 @@ using namespace std;
 void print(map<int, string>mp)
 {
     for(auto x:mp)cout<<x.first<<' '<<x.second<<'\n';
-
 }
 int main()
 {
@@ -15,8 +14,9 @@ int main()
     mp[2]="Hannan";
     mp[5]="mahabub";
     mp[4]="sahin";
-    mp[3]= "Akash";//tahole aita ager key ar value change kore reuse hobe
+    //find function diye key ar value ta khuja jay
+    auto it = mp.find(4);
+    cout<<(*it).first<<' '<<(*it).second<<'\n'<<'\n';
+    mp.erase(2);//key diye oh erase kora jay abar iterator diye oh erase kora jay
     print(mp);
-    //jodi map ar kono akta key value print korte cai just oi map ar key ar number ta dile ans beriye asbe
-    cout<<mp[5]<<'\n';
 }
