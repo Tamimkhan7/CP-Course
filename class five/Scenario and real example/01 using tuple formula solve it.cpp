@@ -8,16 +8,16 @@ int main()
 {
     int n;
     cin>>n;
-    vector<pair<double, pair<int, int>>>v;
+    vector<tuple<double,int, int>>v;
     for(int i=0; i<n; i++)
     {
         int x,y;
         cin>>x>>y;
-        v.push_back(make_pair(dist(x,y), make_pair(x,y)));
+        v.push_back(make_tuple(dist(x,y),x,y));
     }
     sort(v.begin(), v.end());//lexicographical compare hobe
-    for(auto [d,p] : v)
+    for(auto [d,a,b] : v)
     {
-        cout<<p.first<<' '<<p.second<<'\n';
+        cout<<a<<' '<<b<<'\n';
     }
 }
