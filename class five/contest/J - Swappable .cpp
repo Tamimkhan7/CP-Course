@@ -3,17 +3,21 @@ using namespace std;
 int main()
 {
     int n;
-    cin>>n;
+    cin >> n;
     int a[n];
-    for(int i=0; i<n; i++)cin>>a[i];
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
 
-    int ans=0;
-    for(int i=0; i<n; i++)
+    map<int, int> mp;
+    for (int i = 0; i < n; i++)
     {
-        for(int j=i+1; j<n; j++)
-        {
-            if(a[i] !=a[j])ans++;
-        }
+        mp[a[i]]++;
     }
-    cout<<ans<<'\n';
+    int ans = 0;
+    for (auto [x, y] : mp)
+    {
+        ans += (n - y) * y;
+        n -= y;
+    }
+    cout << ans << '\n';
 }
