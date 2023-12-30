@@ -6,20 +6,11 @@ using namespace std;
     cin.tie(0);                   \
     cout.tie(0);
 typedef long long int ll;
-bool cmp(pair<int, int> a, pair<int, int> b)
+void print(priority_queue<pair<int, int>> ml)
 {
-    auto [x1, y1] = a;
-    auto [x2, y2] = b;
-    if (x1 > x2)
-        return true;
-    else if (x1 == x2)
-    {
-        if (y1 < y2)
-        {
-            return true;
-        }
-    }
-    return false;
+    while (!ml.empty())
+        cout << (ml.top()).first << ' ' << (ml.top()).second << '\n';
+    ml.pop();
 }
 int32_t main()
 {
@@ -30,18 +21,13 @@ int32_t main()
     {
         int n;
         cin >> n;
-        vector<pair<int, int>> a;
-        for (int i = 0; i < n; i++)
+        priority_queue<pair<int, int>> ml;
+        while (n--)
         {
             int x, y;
             cin >> x >> y;
-            a.push_back({x, y});
+            ml.push(make_pair(x, y));
         }
-        sort(a.rbegin(), a.rend(), cmp);
-
-        for (auto [x, y] : a)
-        {
-            cout << x << ' ' << y << '\n';
-        }
+        print(ml);
     }
 }

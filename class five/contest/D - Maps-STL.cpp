@@ -15,46 +15,36 @@ void print(map<string, int> mp)
 int32_t main()
 {
     faster;
-    int q, n, x;
-    string s;
+    int q;
     cin >> q;
     map<string, int> mp;
     while (q--)
     {
-        cin >> n;
-        if (n == 1)
+        int x, y;
+        cin >> x;
+        string ty;
+        cin >> ty;
+        cin >> y;
+        if (x == 1)
         {
-            cin >> s >> x;
-            auto it = mp.find(s);
-            if (it != mp.end())
-            {
-                mp.erase(it);
-                int res = it->second + x;
-                mp.insert({s, res});
-            }
-            else
-                mp.insert({s, x});
+            mp.insert({ty, y});
+            print(mp);
         }
-        else if (n == 2)
+        else if (x == 2)
         {
-            cin >> s;
-            auto itx = mp.find(s);
-            if (itx != mp.end())
+            if (mp.find(ty) != mp.end())
             {
-                mp.erase(itx);
+                mp.erase(ty);
+                print(mp);
             }
-            continue;
         }
-        else if (n == 3)
+        else
         {
-            cin >> s;
-            auto it1 = mp.find(s);
-            if (it1 != mp.end())
+            if (mp.find(ty) != mp.end())
             {
-                cout << it1->second << '\n';
+                cout << mp[y];
             }
-            else
-                cout << 0 << '\n';
         }
+        cout << mp.size() << '\n';
     }
 }
