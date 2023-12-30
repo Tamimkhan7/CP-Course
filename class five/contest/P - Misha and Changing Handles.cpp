@@ -9,17 +9,31 @@ typedef long long int ll;
 #define all(x) x.begin(), x.end()
 #define mod 1000000007
 #define pb push_back()
-#define pop pop_back()
+
 int32_t main()
 {
     MTK;
-    int t;
-    cin >> t;
-    unordered_map<string, string> m;
-    for (int i = 0; i < t; i++)
+    int n;
+    cin >> n;
+    map<string, string> mp;
+    for (int i = 0; i < n; i++)
     {
-        string a, b;
-        cin >> a >> b;
-        m.insert{a, b};
+        string old_user, current_user;
+        cin >> old_user >> current_user;
+        auto it = mp.find(old_user);
+        if (it != mp.end())
+        {
+            mp[current_user] = mp[old_user];
+            mp.erase(old_user);
+            // cout << "1 " << mp[current_user] << ' ' << mp[old_user] << '\n';
+        }
+        else
+        {
+            mp[current_user] = old_user;
+            // cout << "2 " << mp[current_user] << ' ' << old_user << '\n';
+        }
     }
+    cout << mp.size() << '\n';
+    for (auto [x, y] : mp)
+        cout << y << ' ' << x << '\n';
 }
