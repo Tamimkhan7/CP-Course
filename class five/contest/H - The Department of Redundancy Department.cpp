@@ -14,11 +14,16 @@ int32_t main()
 {
     MTK;
     int n;
-    map<int, int> mp;
+    vector<int> v;
+    unordered_map<int, int> mp;
     while (cin >> n)
     {
+        v.push_back(n);
         mp[n]++;
     }
     for (auto [x, y] : mp)
+    {
+        
         cout << x << ' ' << y << '\n';
+    }
 }
