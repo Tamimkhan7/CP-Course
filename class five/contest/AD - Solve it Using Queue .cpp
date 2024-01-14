@@ -37,7 +37,7 @@ void solve()
                     ans += s[x] - 38;
                 if (s[y] - 38 > 0)
                     ans += s[y] - 38;
-                cout << ans << '\n';
+                // cout << ans << '\n';
             }
         }
 

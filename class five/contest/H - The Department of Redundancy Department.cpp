@@ -15,15 +15,15 @@ int32_t main()
     MTK;
     int n;
     vector<int> v;
-    unordered_map<int, int> mp;
+    map<int, int> mp;
     while (cin >> n)
     {
-        v.push_back(n);
+        if (mp[n] == 0)
+            v.push_back(n);
         mp[n]++;
     }
-    for (auto [x, y] : mp)
+    for (auto x : v)
     {
-        
-        cout << x << ' ' << y << '\n';
+        cout << x << ' ' << mp[x] << '\n';
     }
 }

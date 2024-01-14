@@ -20,31 +20,32 @@ int32_t main()
     map<string, int> mp;
     while (q--)
     {
-        int x, y;
-        cin >> x;
-        string ty;
-        cin >> ty;
-        cin >> y;
-        if (x == 1)
+        int ty;
+        string name;
+        cin >> ty >> name;
+        if (ty == 1)
         {
-            mp.insert({ty, y});
-            print(mp);
+
+            int mark;
+            cin >> mark;
+            mp[name] += mark; // store the value of name
         }
-        else if (x == 2)
+        else if (ty == 2)
         {
-            if (mp.find(ty) != mp.end())
+
+            cin >> name;
+            auto it = mp.find(name);
+            if (it != mp.end())
             {
-                mp.erase(ty);
-                print(mp);
+                mp.erase(it);
             }
+            // mp.erase(mp.find(name));aita oh kaj korbe tobe aktu jamela korte pare
+            // mp[name] = 0; // erase the name value,,,//karon map always 0 dara sorte thake
         }
         else
         {
-            if (mp.find(ty) != mp.end())
-            {
-                cout << mp[y];
-            }
+
+            cout << mp[name] << '\n';
         }
-        cout << mp.size() << '\n';
     }
 }

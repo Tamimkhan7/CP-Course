@@ -10,23 +10,54 @@ typedef long long int ll;
 #define mod 1000000007
 #define pb push_back()
 #define pop pop_back()
+bool check(string s)
+{
+
+    stringstream ss(s);
+    int count = 0;
+    string word;
+    while (ss >> word)
+    {
+        count++;
+    }
+    if (count == 2)
+        return true;
+    else
+        false;
+}
 int32_t main()
 {
     MTK;
     map<string, string> mp;
-    string s, ss;
-    while (cin >> s >> ss)
+    string s;
+    while (getline(cin, s))
     {
-        if (s.empty() and ss.empty())
+        // auto it = s.find(" ");//ai way ta kaj kore na
+
+        // ai way ta use kora jeto
+
+        if (check(s) == true)
         {
-            break;
+            stringstream ss(s);
+            string a, b;
+            ss >> a >> b; // two ta word ke alada kore niyeci
+            mp[b] = a;
         }
-        mp.insert({s, ss});
-        cout << s << ' ' << ss << '\n';
-    }
-    string xp;
-    while (cin >> xp)
-    {
-        cout << xp << '\n';
+
+        //  if (find(s.begin(), s.end(), ' ') != s.end()) // string a khujteci je kono space ace kina
+        //  {
+        //      stringstream ss(s);
+        //      string a, b;
+        //      ss >> a >> b; // two ta word ke alada kore niyeci
+        //      mp[b] = a;
+        //      // cout << a << ' ' << b << '\n';
+        //  }
+        else
+        {
+            if (mp.find(s) != mp.end())
+                cout << mp[s] << '\n';
+            else
+                cout << "eh" << '\n';
+        }
     }
 }

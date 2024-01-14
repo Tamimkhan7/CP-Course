@@ -32,8 +32,15 @@ int32_t main()
             if (s.find(x) != s.end())
             {
                 s.erase(x);
-                // print(s);
             }
+            // for multiset
+            //  if (s.find(x) != s.end())
+            //  {
+            // auto it = s.find(x);
+            //     s.erase(it);
+            //     // print(s);
+
+            // }
         }
         else
         {

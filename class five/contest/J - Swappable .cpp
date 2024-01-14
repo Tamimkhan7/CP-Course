@@ -17,7 +17,7 @@ int32_t main()
     for (int i = 0; i < n; i++)
         cin >> a[i];
 
-    map<ll, ll> mp;
+    map<int, int> mp;
     for (int i = 0; i < n; i++)
     {
         mp[a[i]]++;
@@ -30,3 +30,19 @@ int32_t main()
     }
     cout << ans << '\n';
 }
+/*
+solved this probem in another way
+  map<int, int> cnt;
+    ll ans = 0;
+    //counting 1 index
+    for (int j = 1; j <= n; j++)
+    {
+        ans += j - 1 - cnt[a[j]];//fixed j tom index value then count all distric value
+        // cout << a[j] << ' ' << cnt[a[j]] << " " << ans << '\n';
+
+        cnt[a[j]]++;
+    }
+    cout << ans << '\n';
+}
+
+*/

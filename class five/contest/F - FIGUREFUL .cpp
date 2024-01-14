@@ -22,7 +22,9 @@ int32_t main()
         cin >> x >> y;
         string s;
         cin >> s;
-        mp[{x, y}] = s;
+        // pair<int, int> p = make_pair(x, y);aita oh kora jay
+        // mp[p]=s;//map a s value insert kore dilam
+        mp[{x, y}] = s; // aita easy way tai aita apply korlam
     }
 
     int n;
@@ -32,10 +34,11 @@ int32_t main()
     {
         int x, y;
         cin >> x >> y;
-        auto it = mp.find({x, y});
+        pair<int, int> p = make_pair(x, y);
+        auto it = mp.find(p);
         if (it != mp.end())
         {
-            cout << it->second << '\n';
+            cout << mp[p] << '\n';
         }
     }
 }

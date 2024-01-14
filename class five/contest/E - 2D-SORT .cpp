@@ -6,11 +6,16 @@ using namespace std;
     cin.tie(0);                   \
     cout.tie(0);
 typedef long long int ll;
-void print(priority_queue<pair<int, int>> ml)
+bool cmp(pair<int, int> a, pair<int, int> b)
 {
-    while (!ml.empty())
-        cout << (ml.top()).first << ' ' << (ml.top()).second << '\n';
-    ml.pop();
+    auto [x1, y1] = a;
+    auto [x2, y2] = b;
+    if (x1 > x2)
+        return true;
+    else if (x1 == x2 and y1 < y2)
+        return true;
+
+    return false;
 }
 int32_t main()
 {
@@ -21,13 +26,18 @@ int32_t main()
     {
         int n;
         cin >> n;
-        priority_queue<pair<int, int>> ml;
-        while (n--)
+        vector<pair<int, int>> a;
+        for (int i = 0; i < n; i++)
         {
             int x, y;
             cin >> x >> y;
-            ml.push(make_pair(x, y));
+            a.push_back({x, y});
         }
-        print(ml);
+        sort(a.rbegin(), a.rend(), cmp); // reverse sort,, means descending order sort and coustom sort
+
+        for (auto [x, y] : a)
+        {
+            cout << x << ' ' << y << '\n';
+        }
     }
 }
