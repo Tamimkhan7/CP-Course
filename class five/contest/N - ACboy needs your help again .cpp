@@ -58,3 +58,61 @@ int32_t main()
     while (t--)
         solve();
 }
+// problem ta stack and queue diye solve kora jay
+/*void solve()
+{
+    int n;
+    string s;
+    cin >> n >> s;
+    queue<int> q;
+    stack<int> st;
+    while (n--)
+    {
+        if (s == "FIFO")
+        {
+            string x;
+            cin >> x;
+            if (x == "IN")
+            {
+                int ac;
+                cin >> ac;
+                q.push(ac);
+            }
+            else
+            {
+                if (q.empty())
+                {
+                    cout << "None" << '\n';
+                }
+                else
+                {
+                    cout << q.front() << '\n';
+                    q.pop();
+                }
+            }
+        }
+        else
+        {
+            string x;
+            cin >> x;
+            if (x == "IN")
+            {
+                int ac;
+                cin >> ac;
+                st.push(ac);
+            }
+            else
+            {
+                if (st.empty())
+                {
+                    cout << "None" << '\n';
+                }
+                else
+                {
+                    cout << st.top() << '\n';
+                    st.pop();
+                }
+            }
+        }
+    }
+}*/

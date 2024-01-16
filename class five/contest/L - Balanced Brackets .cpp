@@ -8,13 +8,16 @@ using namespace std;
 typedef long long int ll;
 #define all(x) x.begin(), x.end()
 #define mod 1000000007
-#define pb push_back
-#define pop pop_back()
-void print(string s)
+bool is_valid(char open, char close)
 {
-    for (int i = 0; i < s.size(); i++)
-        cout << s[i] << ' ';
-    cout << '\n';
+    if (open == '(' and close == ')')
+        return true;
+    else if (open == '{' and close == '}')
+        return true;
+    else if (open == '[' and close == ']')
+        return true;
+    else
+        return false;
 }
 int32_t main()
 {
@@ -25,34 +28,65 @@ int32_t main()
     {
         string s;
         cin >> s;
-        for (int i = 0; i < s.size(); i++)
+        bool ok = true;
+        stack<char> st;
+        for (auto c : s)
         {
-            if (s[i] == '[' and s[i + 1] == ']')
+            if (c == '(' or c == '{' or c == '[')
             {
-                s.erase(s.begin() + i);
-                s.erase(s.begin() + i);
-                // print(s);
-                i = -1;
+                st.push(c);
             }
-            if (s[i] == '{' and s[i + 1] == '}')
+            else
             {
-                s.erase(s.begin() + i);
-                s.erase(s.begin() + i);
-                // print(s);
-                i = -1;
-            }
-            if (s[i] == '(' and s[i + 1] == ')')
-            {
-                s.erase(s.begin() + i);
-                s.erase(s.begin() + i);
-                // print(s);
-                i = -1;
+                if (st.empty())
+                {
+                    ok = false;
+                    break;
+                }
+                else
+                { 
+                    char close = c;
+                    char open = st.top();
+                    st.pop();
+                    if (!is_valid(open, close))
+                    {
+                        ok = false;
+                        break;
+                    }
+                }
             }
         }
-        if (s.size() == 0)
+        if (!st.empty())
+            ok = false;
+        if (ok)
             cout << "YES" << '\n';
         else
             cout << "NO" << '\n';
-        // cout << s.size() << '\n';
     }
 }
+// this is one way correct answer
+//          for (int i = 0; i < s.size(); i++)
+//          {
+//              if (s[i] == '[' and s[i + 1] == ']')
+//              {
+//                  s.erase(s.begin() + i);
+//                  s.erase(s.begin() + i);
+//                  i = -1;
+//              }
+//              if (s[i] == '{' and s[i + 1] == '}')
+//              {
+//                  s.erase(s.begin() + i);
+//                  s.erase(s.begin() + i);
+//                  i = -1;
+//              }
+//              if (s[i] == '(' and s[i + 1] == ')')
+//              {
+//                  s.erase(s.begin() + i);
+//                  s.erase(s.begin() + i);
+//                  i = -1;
+//              }
+//          }
+//          if (s.size() == 0)
+//              cout << "YES" << '\n';
+//          else
+//              cout << "NO" << '\n';
