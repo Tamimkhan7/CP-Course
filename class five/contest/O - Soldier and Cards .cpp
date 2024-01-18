@@ -12,51 +12,46 @@ void solve()
 {
     int n;
     cin >> n;
-    deque<int> a;
+    deque<int> a, b;
+    int x;
     for (int i = 0; i < n; i++)
     {
-        int x;
         cin >> x;
         a.push_back(x);
     }
-    int n2;
-    cin >> n2;
-    deque<int> b;
-    for (int i = 0; i < n2; i++)
+    cin >> n;
+    for (int i = 0; i < n; i++)
     {
-        int x;
+
         cin >> x;
         b.push_back(x);
     }
     int ans = 0;
     while ((!a.empty()) && (!b.empty()))
     {
+        int x = a.front();
+        int y = b.front();
         if (ans > 10000)
         {
             ans = -1;
             break;
         }
-        if (a.front() > b.front())
+        if (x > y)
         {
-            int x = a.front();
-            int y = b.front();
             a.push_back(y);
             a.push_back(x);
             a.pop_front();
             b.pop_front();
-            ans++;
         }
         else
         {
 
-            int x = a.front();
-            int y = b.front();
             b.push_back(x);
             b.push_back(y);
             a.pop_front();
             b.pop_front();
-            ans++;
         }
+        ans++;
     }
     if (ans == -1)
     {

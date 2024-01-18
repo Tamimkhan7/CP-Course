@@ -10,6 +10,7 @@ typedef long long int ll;
 #define mod 1000000007
 bool cmp(pair<string, int> a, pair<string, int> b)
 {
+
     return a.second > b.second;
 }
 int32_t main()
@@ -27,16 +28,19 @@ int32_t main()
             string s;
             int x;
             cin >> s >> x;
-            mp.insert({s, x});
+            mp[s] = x;
+        }
+        // map sort kora jay na tai take vector a niye sort kora lagbe, otherwise use have another stl for map sorting
+        vector<pair<string, int>> v;
+        for (auto i : mp)
+        {
+            v.push_back(i);
         }
 
-        vector<pair<string, int>> v;
-        for (auto X : mp)
-            v.push_back(X);
-
         sort(v.begin(), v.end(), cmp);
-
         for (auto [x, y] : v)
+        {
             cout << x << '\n';
+        }
     }
 }

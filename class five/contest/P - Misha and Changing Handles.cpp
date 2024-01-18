@@ -16,22 +16,19 @@ int32_t main()
     int n;
     cin >> n;
     map<string, string> mp;
-    for (int i = 0; i < n; i++)
+    while (n--)
     {
-        string old_user, current_user;
-        cin >> old_user >> current_user;
-        auto it = mp.find(old_user);
-        if (it != mp.end())
+        string old_user, new_user;
+        cin >> old_user >> new_user;
+        if (mp.find(old_user) == mp.end())
         {
-            mp[current_user] = mp[old_user];
-            mp.erase(old_user);
-            // cout << "1 " << mp[current_user] << ' ' << mp[old_user] << '\n';
+            mp[new_user] = old_user;
         }
         else
         {
-            mp[current_user] = old_user;
-            // cout << "2 " << mp[current_user] << ' ' << old_user << '\n';
-        }
+            mp[new_user] = mp[old_user];
+            mp.erase(old_user);
+        } 
     }
     cout << mp.size() << '\n';
     for (auto [x, y] : mp)
