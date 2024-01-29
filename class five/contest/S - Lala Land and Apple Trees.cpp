@@ -1,56 +1,68 @@
+/*
+
+Problem link: https://codeforces.com/problemset/problem/558/A
+Time Complexity: O(n log n)
+
+*/
+
 #include <bits/stdc++.h>
+
 using namespace std;
-#define ordered_set tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update>
-#define MTK                       \
+// #define int long long
+#define endl "\n"
+#define Faster                    \
     ios_base::sync_with_stdio(0); \
     cin.tie(0);                   \
     cout.tie(0);
-typedef long long int ll;
-#define all(x) x.begin(), x.end()
-#define mod 1000000007
-bool cmp(pair<int, int> a, pair<int, int> b)
+#define mem(a, b) memset(a, b, sizeof(a))
+#define len(a) sizeof(a) / sizeof(int)
+#define what_is(x) cerr << #x << " is " << x << endl;
+#define all(x) (x).begin(), (x).end()
+
+vector<pair<int, int>> positions[2];
+
+int make_sum(int dir)
 {
-    return a.first < b.first;
+
+    int indexs[] = {0, 0}, sum = 0;
+
+    // If dir = 1, then we will continue moving in the right direction.
+    // Otherwise, we will proceed in the left direction.
+    while (indexs[dir] < (int)positions[dir].size())
+    {
+        sum += positions[dir][indexs[dir]++].second;
+        dir ^= 1;
+    }
+    return sum;
 }
-bool cmp1(pair<int, int> a, pair<int, int> b)
+
+void solve()
 {
-    return a.second > b.second;
+    int n;
+    cin >> n;
+
+    for (int i = 0; i < n; i++)
+    {
+        int tem, v;
+        cin >> tem >> v;
+        if (tem < 0)
+            positions[0].push_back({-1 * tem, v});
+        else
+            positions[1].push_back({tem, v});
+    }
+
+    // sorting based on positions of the tree.
+    sort(all(positions[1]));
+    sort(all(positions[0]));
+
+    int mx = max(make_sum(1), make_sum(0));
+
+    cout << mx << endl;
 }
 int32_t main()
 {
-    MTK;
-    int n;
-    cin >> n;
-    deque<pair<int, int>> d;
-    vector<pair<int, int>> v;
-    while (n--)
-    {
-        int x, y;
-        cin >> x >> y;
-        v.push_back(make_pair(x, y));
-    }
-    sort(v.begin(), v.end(), cmp);
-    // sort(v.begin(), v.end(), cmp1);
-    // for (auto [x, y] : v)
-    // {
-    //     cout << x << ' ' << y << '\n';
-    // }
-    for (auto a : v)
-    {
-        d.push_back(a);
-    }
-    int ans = 0, flag = 0;
-    while ((d.front().first < 0 and d.back().first > 0) and d.size() > 1)
-    {
-        ans += d.front().second;
-        ans += d.back().second;
-        d.pop_front();
-        d.pop_back();
-        flag = 1;
-    }
-    if (d.size() != 0 and flag == 0)
-        ans += d.front().second;
-    else if (d.size() != 0 and flag == 1)
-        ans += d.front().second;
-    cout << ans << '\n';
+    Faster;
+
+    solve();
+    return 0;
 }

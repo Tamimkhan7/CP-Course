@@ -12,7 +12,6 @@ typedef long long int ll;
 #define pop pop_back()
 bool check(string s)
 {
-
     stringstream ss(s);
     int count = 0;
     string word;
