@@ -20,20 +20,38 @@ void solve()
         d.push_back(x);
     }
     int ans_m = 0, ans_b = 0;
-    // cout<<d.size()
-    while (d.size() > 0)
+    while (!d.empty())
     {
-        ans_m += d.front();
-        d.pop_front();
-        cout << ans_m << ' ' << d.front() << '\n';
-        ans_m += d.front();
-        d.pop_front();
-        ans_b += d.back();
-        d.pop_back();
-        ans_b += d.back();
-        d.pop_back();
-        cout << d.size() << '\n';
+        int x;
+        if (d.size() >= 1)
+        {
+            x = d.front();
+            ans_m += x;
+            d.pop_front();
+            if (d.size() > 0)
+            {
+                x = d.front();
+                ans_m += x;
+                d.pop_front();
+            }
+        }
+        if (d.size() >= 1)
+        {
+            x = d.back();
+            ans_b += x;
+            d.pop_back();
+            if (d.size() > 0)
+            {
+                x = d.back();
+                ans_b += x;
+                d.pop_back();
+            }
+        }
     }
+    if (ans_m > ans_b)
+        cout << "Masha" << '\n';
+    else
+        cout << "The Bear" << '\n';
 }
 int32_t main()
 {

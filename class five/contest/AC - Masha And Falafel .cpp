@@ -11,31 +11,21 @@ typedef long long int ll;
 int32_t main()
 {
     MTK;
+    // basicall r radius akbar circle ace ar por poti bar ai add kortece if ai ta unique hoy
     int t;
     cin >> t;
     while (t--)
     {
         int n;
         cin >> n;
-        deque<int> d, xp;
-        for (int i = 1; i <= n; i++)
+        set<int> s;
+        for (int i = 0; i < n; i++)
         {
-            d.push_back(i);
+            int x;
+            cin >> x;
+            s.insert(x);
+            cout << s.size() << ' ';
         }
-        while (!d.empty())
-        {
-            int x = d.back();
-            d.push_front(x);
-            d.pop_back();
-            int y = d.back();
-            xp.push_front(y);
-            d.pop_back();
-        }
-        int ans = xp.front();
-        xp.pop_front();
-        xp.push_back(ans);
-        for (auto x : xp)
-            cout << x << ' ';
         cout << '\n';
     }
 }

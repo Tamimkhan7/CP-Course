@@ -16,38 +16,56 @@ void solve()
     cin >> n >> k;
     string s;
     cin >> s;
-    int ak = k, maxi = -1e5;
+    int mx = -1e9, pos;
     for (int i = 0; i < n; i++)
     {
-        k = ak;
-        int ans = 0;
-        for (int x = i + 1, y = i - 1; i - k <= y, x <= k + i; y++, x++)
+        int ans1 = 0, ans = 0;
+        for (int j = i; j <= i + k; j++)
         {
-            if (s[x] >= 'a' and s[x] <= 'z' || s[y] >= 'a' and s[y] <= 'z')
+            if (j < n)
             {
-                if (s[x] - 96 > 0)
-                    ans += s[x] - 96;
-                if (s[y] > 0)
-                    ans += s[y] - 96;
-                cout << ans << '\n';
-            }
-            else if (s[x] >= 'A' and s[x] <= 'Z' || s[y] >= 'A' and s[y] <= 'Z')
-            {
-                if (s[x] - 38 > 0)
-                    ans += s[x] - 38;
-                if (s[y] - 38 > 0)
-                    ans += s[y] - 38;
-                // cout << ans << '\n';
+                if (s[j] >= 'A' and s[j] <= 'Z')
+                {
+                    int x = int(s[j]);
+                    int y = (x - 65) + 27;
+                    ans1 += y;
+                }
+                else if (s[j] >= 'a' and s[j] <= 'z')
+                {
+                    int x = int(s[j]);
+                    int y = (x - 97) + 1;
+                    ans1 += y;
+                }
             }
         }
-
-        if (s[i] >= 'a' and s[i] <= 'z')
-            ans += s[i] - 96;
-        else
-            ans += s[i] - 38;
-        maxi = max(ans, maxi);
-        cout << s[i] << ' ' << maxi << '\n';
+        // cout << ans1 << ' ';
+        for (int j = i - 1; j >= i - k; j--)
+        {
+            if (j >= 0)
+            {
+                if (s[j] >= 'A' and s[j] <= 'Z')
+                {
+                    int x = int(s[j]);
+                    int y = (x - 65) + 27;
+                    ans += y;
+                }
+                else if (s[j] >= 'a' and s[j] <= 'z')
+                {
+                    int x = int(s[j]);
+                    int y = (x - 97) + 1;
+                    ans += y;
+                }
+            }
+        }
+        // cout << ans << '\n';
+        ans += ans1;
+        if (mx < ans)
+        {
+            mx = ans;
+            pos = i;
+        }
     }
+    cout << pos + 1 << ' ' << mx << '\n';
 }
 int32_t main()
 {
@@ -55,7 +73,5 @@ int32_t main()
     int t;
     cin >> t;
     while (t--)
-    {
         solve();
-    }
 }
