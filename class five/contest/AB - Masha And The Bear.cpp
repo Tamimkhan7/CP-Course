@@ -19,7 +19,7 @@ void solve()
         cin >> x;
         d.push_back(x);
     }
-    int ans_m = 0, ans_b = 0;
+    ll ans_m = 0, ans_b = 0;
     while (!d.empty())
     {
         int x;
@@ -48,7 +48,9 @@ void solve()
             }
         }
     }
-    if (ans_m > ans_b)
+    if (ans_m == ans_b)
+        cout << "Draw" << '\n';
+    else if (ans_m > ans_b)
         cout << "Masha" << '\n';
     else
         cout << "The Bear" << '\n';

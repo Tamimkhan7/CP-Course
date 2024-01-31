@@ -30,7 +30,7 @@ int32_t main()
             cin >> s >> x;
             mp[s] = x;
         }
-        // map sort kora jay na tai take vector a niye sort kora lagbe, otherwise use have another stl for map sorting
+
         vector<pair<string, int>> v;
         for (auto i : mp)
         {

@@ -11,10 +11,10 @@ typedef long long int ll;
 int32_t main()
 {
     MTK;
-    int n;
-    cin >> n;
+    int t;
+    cin >> t;
     deque<int> q;
-    while (n--)
+    while (t--)
     {
         int ty, x;
         cin >> ty;
