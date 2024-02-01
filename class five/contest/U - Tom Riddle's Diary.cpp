@@ -13,24 +13,15 @@ int32_t main()
     MTK;
     int n;
     cin >> n;
-    string s[n];
-    for (int i = 0; i < n; i++)
-        cin >> s[i];
-
+    map<string, int> mp;
     for (int i = 0; i < n; i++)
     {
-        int flag = 0;
-        for (int j = 0; j < i; j++)
-        {
-            if (s[i] == s[j])
-            {
-                flag = 1;
-                break;
-            }
-        }
-        if (flag == 1)
+        string s;
+        cin >> s;
+        if (mp.find(s) != mp.end())
             cout << "YES" << '\n';
         else
             cout << "NO" << '\n';
+        mp[s]++;
     }
 }

@@ -1,68 +1,47 @@
-/*
-
-Problem link: https://codeforces.com/problemset/problem/558/A
-Time Complexity: O(n log n)
-
-*/
-
 #include <bits/stdc++.h>
-
 using namespace std;
-// #define int long long
-#define endl "\n"
-#define Faster                    \
+#define ordered_set tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update>
+#define MTK                       \
     ios_base::sync_with_stdio(0); \
     cin.tie(0);                   \
     cout.tie(0);
-#define mem(a, b) memset(a, b, sizeof(a))
-#define len(a) sizeof(a) / sizeof(int)
-#define what_is(x) cerr << #x << " is " << x << endl;
-#define all(x) (x).begin(), (x).end()
-
-vector<pair<int, int>> positions[2];
-
-int make_sum(int dir)
+typedef long long int ll;
+#define all(x) x.begin(), x.end()
+#define mod 1000000007
+int get_apple(deque<pair<int, int>> left, deque<pair<int, int>> right)
 {
-
-    int indexs[] = {0, 0}, sum = 0;
-
-    // If dir = 1, then we will continue moving in the right direction.
-    // Otherwise, we will proceed in the left direction.
-    while (indexs[dir] < (int)positions[dir].size())
+    int total_apples = 0;
+    while (1)
     {
-        sum += positions[dir][indexs[dir]++].second;
-        dir ^= 1;
+        if (left.empty())
+            break;
+        total_apples += left.front().second;
+        left.pop_front();
+        if (right.empty())
+            break;
+        total_apples += right.front().second;
+        right.pop_front();
     }
-    return sum;
+    return total_apples;
 }
-
-void solve()
+int32_t
+main()
 {
+    MTK;
     int n;
     cin >> n;
-
-    for (int i = 0; i < n; i++)
+    deque<pair<int, int>> left, right;
+    while (n--)
     {
-        int tem, v;
-        cin >> tem >> v;
-        if (tem < 0)
-            positions[0].push_back({-1 * tem, v});
+        int pos, value;
+        cin >> pos >> value;
+        if (pos < 0)
+            left.push_back({-pos, value});
         else
-            positions[1].push_back({tem, v});
+            right.push_back({pos, value});
     }
-
-    // sorting based on positions of the tree.
-    sort(all(positions[1]));
-    sort(all(positions[0]));
-
-    int mx = max(make_sum(1), make_sum(0));
-
-    cout << mx << endl;
-}
-int32_t main()
-{
-    Faster;
-
-    solve();
-    return 0;
+    sort(all(left));
+    sort(all(right));
+    int total_apples = max(get_apple(left, right), get_apple(right, left));
+    cout << total_apples << '\n';
 }

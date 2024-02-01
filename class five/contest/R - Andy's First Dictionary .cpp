@@ -12,17 +12,22 @@ int32_t main()
 {
     MTK;
     string s;
-    map<string, int> mp;
-    while (cin >> s)
+    set<string> se;
+    while (getline(cin, s))
     {
         stringstream ss(s);
         string word;
         while (ss >> word)
         {
-            // cout << word << ' ';
+            string xp;
+            for (auto x : word)
+            {
+                if ((x >= 'a' and x <= 'z') || (x >= 'A' and x <= 'Z'))
+                    xp += tolower(x);
+            }
+            se.insert(xp);
         }
-        for (auto xp : word)
-            cout << xp << ' ';
-        cout << '\n';
     }
+    for (auto x : se)
+        cout << x << '\n';
 }

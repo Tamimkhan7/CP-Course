@@ -22,7 +22,7 @@ bool check(string s)
     if (count == 2)
         return true;
     else
-        false;
+        return false;
 }
 int32_t main()
 {
@@ -31,26 +31,15 @@ int32_t main()
     string s;
     while (getline(cin, s))
     {
-        // auto it = s.find(" ");//ai way ta kaj kore na
-
-        // ai way ta use kora jeto
-
-        if (check(s) == true)
+        if (s.empty())
+            continue;
+        else if (check(s) == true)
         {
             stringstream ss(s);
             string a, b;
             ss >> a >> b; // two ta word ke alada kore niyeci
             mp[b] = a;
         }
-
-        //  if (find(s.begin(), s.end(), ' ') != s.end()) // string a khujteci je kono space ace kina
-        //  {
-        //      stringstream ss(s);
-        //      string a, b;
-        //      ss >> a >> b; // two ta word ke alada kore niyeci
-        //      mp[b] = a;
-        //      // cout << a << ' ' << b << '\n';
-        //  }
         else
         {
             if (mp.find(s) != mp.end())
@@ -60,4 +49,3 @@ int32_t main()
         }
     }
 }
-// runtime error

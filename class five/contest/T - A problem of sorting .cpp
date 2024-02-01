@@ -8,10 +8,10 @@ using namespace std;
 typedef long long int ll;
 #define all(x) x.begin(), x.end()
 #define mod 1000000007
-bool cmp(pair<string, int> a, pair<string, int> b)
+bool cmp(pair<int, string> a, pair<int, string> b)
 {
 
-    return a.second > b.second;
+    return a.first > b.first;
 }
 int32_t main()
 {
@@ -20,27 +20,26 @@ int32_t main()
     cin >> t;
     while (t--)
     {
+        vector<pair<int, string>> v;
         int n;
         cin >> n;
-        map<string, int> mp;
-        while (n--)
+        cin.ignore();
+        for (int i = 0; i < n; i++)
         {
             string s;
-            int x;
-            cin >> s >> x;
-            mp[s] = x;
+            getline(cin, s);
+            int len = s.size();
+            // cout << s << '\n';
+            string age_second = s.substr(len - 4); // ai vabe deoya holo oi index theke last projnto ja ace sob niye nibe
+            int age = stoi(age_second);
+            string name = s.substr(0, len - 5); // ar aita mane holo 0 index theke oi index projnto sob index niye nibe
+            v.push_back({age, name});
         }
 
-        vector<pair<string, int>> v;
-        for (auto i : mp)
-        {
-            v.push_back(i);
-        }
-
-        sort(v.begin(), v.end(), cmp);
+        sort(v.rbegin(), v.rend());
         for (auto [x, y] : v)
         {
-            cout << x << '\n';
+            cout << y << '\n';
         }
     }
 }
