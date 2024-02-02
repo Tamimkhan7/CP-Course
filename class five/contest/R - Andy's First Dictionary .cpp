@@ -22,7 +22,7 @@ int32_t main()
             string xp;
             for (auto x : word)
             {
-                if ((x >= 'a' and x <= 'z') || (x >= 'A' and x <= 'Z'))
+                if (isalpha(x))
                     xp += tolower(x);
             }
             se.insert(xp);
