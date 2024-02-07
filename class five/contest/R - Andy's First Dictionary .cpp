@@ -13,20 +13,26 @@ int32_t main()
     MTK;
     string s;
     set<string> se;
-    while (getline(cin, s))
+    while (cin >> s)
     {
-        stringstream ss(s);
-        string word;
-        while (ss >> word)
+        // stringstream ss(s);
+        string word = "";
+        int n = s.size();
+        for (int i = 0; i < n; i++)
         {
-            string xp;
-            for (auto x : word)
+            if (isalpha(s[i]))
+                word += tolower(s[i]);
+            else
             {
-                if (isalpha(x))
-                    xp += tolower(x);
+                if (!word.empty())
+                {
+                    se.insert(word);
+                }
+                word = "";
             }
-            se.insert(xp);
         }
+        if (!word.empty())
+            se.insert(word);
     }
     for (auto x : se)
         cout << x << '\n';

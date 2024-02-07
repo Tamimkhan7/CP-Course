@@ -11,23 +11,26 @@ int32_t main()
         cin >> n;
         deque<int> a, r;
         for (int i = 1; i <= n; i++)
-            a.push_back(i);
+            r.push_back(i);
 
-        while (!a.empty())
+        for (int i = n; i >= 1; i--)
         {
-            int x = a.front();
-            r.push_back(x);
-            a.pop_front();
             if (!a.empty())
             {
-                int y = a.back();
-                r.push_back(y);
+                int last_element = a.back();
                 a.pop_back();
+                a.push_front(last_element);
             }
+            int last_element = r.back();
+            r.pop_back();
+            a.push_front(last_element);
         }
-        for (auto x : r)
-            cout << x << ' ';
-
+        for (int i = 0; i < n; i++)
+        {
+            cout << a[i];
+            if (i < n - 1)
+                cout << " ";
+        }
         cout << '\n';
     }
 }
