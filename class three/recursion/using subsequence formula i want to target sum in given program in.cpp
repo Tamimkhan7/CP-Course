@@ -11,15 +11,15 @@ void sequence(int pos, int current_sum)
         }
         return;
     }
-    sequence(pos + 1, current_sum + a[pos]);//is taken
-    sequence(pos + 1, current_sum);//is not taken
+    sequence(pos + 1, current_sum + a[pos]); // is taken
+    sequence(pos + 1, current_sum);          // is not taken
 }
 int main()
 {
     cin >> n;
     for (int i = 0; i < n; i++)
         cin >> a[i];
-  cin>>target_sum;
+    cin >> target_sum;
     ct = 0;
     sequence(0, 0);
     cout << ct << endl;
