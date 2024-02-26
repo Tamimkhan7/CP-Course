@@ -46,8 +46,8 @@ vector<int> get_marge(int l, int r)
     if (l == r)
         return {a[l]};
     int mid = (l + r) / 2;
-   auto L = get_marge(l, mid);
-auto R = get_marge(mid + 1, r);
+    auto L = get_marge(l, mid);
+    auto R = get_marge(mid + 1, r);
     return merge(L, R);
 }
 int32_t main()
