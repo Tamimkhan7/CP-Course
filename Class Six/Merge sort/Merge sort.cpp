@@ -19,14 +19,26 @@ vector<int> merge(vector<int> l, vector<int> r)
     while (i < n and j < m)
     {
         if (l[i] < r[j])
-            ans.push_back(l[i++]);
+        {
+            ans.push_back(l[i]);
+            i++;
+        }
         else
-            ans.push_back(r[j++]);
+        {
+            ans.push_back(r[j]);
+            j++;
+        }
     }
     while (i < n)
-        ans.push_back(l[i++]);
+    {
+        ans.push_back(l[i]);
+        i++;
+    }
     while (j < m)
-        ans.push_back(r[j++]);
+    {
+        ans.push_back(r[j]);
+        j++;
+    }
     return ans;
 }
 vector<int> get_marge(int l, int r)
@@ -34,9 +46,9 @@ vector<int> get_marge(int l, int r)
     if (l == r)
         return {a[l]};
     int mid = (l + r) / 2;
-    vector<int> left = get_marge(l, mid);
-    vector<int> right = get_marge(mid + 1, r);
-    return merge(left, right);
+   auto L = get_marge(l, mid);
+auto R = get_marge(mid + 1, r);
+    return merge(L, R);
 }
 int32_t main()
 {
