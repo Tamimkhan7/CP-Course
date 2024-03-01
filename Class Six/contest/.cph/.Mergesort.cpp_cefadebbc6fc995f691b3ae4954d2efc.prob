@@ -1,0 +1,1 @@
+{"name":"Local: Mergesort","url":"/home/tamim/Desktop/sohag-vjudge-problem/Class Six/contest/Mergesort.cpp","tests":[{"id":1709281195862,"input":"7 3 2 5 4 3","output":"2 3 3 4 5 7"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/tamim/Desktop/sohag-vjudge-problem/Class Six/contest/Mergesort.cpp","group":"local","local":true}

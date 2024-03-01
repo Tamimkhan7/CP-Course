@@ -8,43 +8,34 @@ using namespace std;
 typedef long long int ll;
 #define all(x) x.begin(), x.end()
 #define mod 1000000007
-const int N = 2e5 + 9;
-int n, k, a[N];
+int n, k;
 bool f(int x)
 {
-    ll min_operation = 0;
-                                                                             
+    int ans = x - x / n;
+    return ans >= k;
+}
+void solve()
+{
+    cin >> n >> k;
+    int l = 1, r = 2e9, ans = 0;
+    while (l <= r)
+    {
+        int mid = (1LL * l + r) / 2;
+        if (f(mid))
+        {
+            ans = mid;
+            r = mid - 1;
+        }
+        else
+            l = mid + 1;
+    }
+    cout << ans << '\n';
 }
 int32_t main()
 {
     MTK;
-    cin >> n >> k;
-    for (int i = 1; i <= n; i++)
-        cin >> a[i];
-    sort(a + 1, a + n + 1);
-    int ans, l = 0, r = 2e9;
-    while (l <= r)
-    {
-        int mid = (1LL * l + r) / 2;
-        // cout << mid << '\n';
-        if (f(mid))
-        {
-            ans = mid;
-            l = mid + 1;
-        }
-        else
-            r = mid - 1;
-    }
-    cout << ans << '\n';
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 }
-/*
-    //code ta basically ai vabe kaj kore
-    int x=0,ans=0;
-    while(f(x)){
-        ans = x;
-        x++;
-}
-    cout<<ans<<'\n';
-//ai take ami binarry searching formula use koreci
-
-*/
