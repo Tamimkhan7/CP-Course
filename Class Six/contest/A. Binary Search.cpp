@@ -24,9 +24,7 @@ void solve()
             return;
         }
         else if (a[mid] > x)
-        {
             r = mid - 1;
-        }
         else
             l = mid + 1;
     }
@@ -40,7 +38,5 @@ int32_t main()
         cin >> a[i];
     sort(a, a + n);
     while (k--)
-    {
         solve();
-    }
 }
