@@ -19,13 +19,7 @@ void solve()
     // while (l <= r)
     // {
     //     int mid = (l + r) / 2;
-    //     if (a[mid] == x)
-    //     {
-    //         ans = mid;
-    //         cout << ans << '\n';
-    //         return;
-    //     }
-    //     else if (a[mid] < x)
+    //     if (a[mid] <= x)
     //     {
     //         ans = mid;
     //         r = mid + 1;
