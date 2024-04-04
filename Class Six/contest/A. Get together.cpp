@@ -1,39 +1,39 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 #define MTK                       \
     ios_base::sync_with_stdio(0); \
     cin.tie(0);                   \
     cout.tie(0);
 #define mem(a, b) memset(a, b, sizeof(a))
 #define all(x) (x).begin(), (x).end()
-#define ll int long long
+#define ll long long
 #define mod 1000000007
+const int N = 1e5 + 9;
 const int Max_time = 1e9 + 9;
-int n;
-vector<pair<int, int>> v;
-bool ok(double mid)
+int n, x[N], v[N];
+bool ok(double time)
 {
-    double minP = -1e18, maxP = 1e18;
-    for (auto [a, b] : v)
+    double maxP = -1e18, minP = 1e18;
+    for (int i = 1; i <= n; i++)
     {
-        minP = max(minP, (a - b) * mid);
-        maxP = min(maxP, (a + b) * mid);
+        // cout << time << ' ';
+        maxP = max(maxP, x[i] - (time * v[i]));
+        minP = min(minP, x[i] + (time * v[i]));
+        // cout << maxP << ' ' << minP << '\n';
     }
-    return maxP >= minP;
+    return maxP <= minP;
 }
-int32_t main()
+
+int main()
 {
     MTK;
 
     cin >> n;
-    for (int i = 0; i < n; i++)
-    {
-        int a, b;
-        cin >> a >> b;
-        v.push_back(make_pair(a, b));
-    }
+    for (int i = 1; i <= n; i++)
+        cin >> x[i] >> v[i];
     double l = 0, r = Max_time, ans;
-    auto it = 100;
+    int it = 100;
     while (it--)
     {
         double mid = (l + r) / 2;
