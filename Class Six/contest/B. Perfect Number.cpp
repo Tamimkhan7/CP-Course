@@ -9,7 +9,7 @@ typedef long long int ll;
 #define all(x) x.begin(), x.end()
 #define mod 1000000007
 int N = 1e8;
-int check(int x)
+bool is_perfect(int x)
 {
     int ans = 0;
     while (x > 0)
@@ -17,24 +17,23 @@ int check(int x)
         ans += x % 10;
         x /= 10;
     }
-    // cout<<ans<<'\n';
-    return ans;
+
+    return (ans == 10);
 }
 int32_t main()
 {
     MTK;
     int k;
     cin >> k;
-    vector<int> v;
-    int n = 19;
+    int cnt = 0;
     for (int i = 19; i < N; i += 9)
     {
-        if (check(i)==10)
+        if (is_perfect(i))
         {
-            v.push_back(i);
-            if (v.size() == k)
+            cnt++;
+            if (cnt == k)
             {
-                cout << v[k - 1] << '\n';
+                cout << i << '\n';
                 return 0;
             }
         }
