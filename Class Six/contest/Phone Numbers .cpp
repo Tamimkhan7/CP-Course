@@ -12,28 +12,46 @@ typedef long long int ll;
 int main()
 {
     MTK;
-    int a, b;
+    int n, k;
+    cin >> n >> k;
     string s;
-    cin >> a >> b >> s;
-    vector<string> v;
-    s += s;
-    cout << s << '\n';
-    for (int mask = 0; mask < (1 << (int)s.size()); mask++)
+    cin >> s;
+    set<char> se;
+    for (auto x : s)
+        se.insert(x);
+
+    char smallest_char = *(se.begin()); // set always return iterator
+    // cout << smallest_char << '\n';
+    if (k <= n)
     {
-        string ans;
-        for (int i = 0; i < (int)s.size(); i++)
+        for (int i = k - 1; i >= 0; i--)
         {
-            if (mask & (1 << i))
+            auto it = se.upper_bound(s[i]);
+            if (it != se.end())
             {
-                ans += s[i];
+                string ans;
+                ans.resize(k);
+                char next_char = *it;
+                ans[i] = next_char;
+                for (int j = 0; j < i; j++)
+                    ans[j] = s[j];
+                for (int j = i + 1; j < k; j++)
+                    ans[j] = smallest_char;
+                cout << ans << '\n';
+                return 0;
             }
         }
-        // cout << ans << '\n';
-        if (ans.size() == b)
-            v.push_back(ans);
     }
-    for (auto subset : v)
-        cout << subset << '\n';
-
+    else
+    {
+        string ans;
+        ans.resize(k);
+        for (int i = 0; i < n; i++)
+            ans[i] = s[i];
+        for (int j = n; j < k; j++)
+            ans[j] = smallest_char;
+        cout << ans << '\n';
+        return 0;
+    }
     return 0;
 }
