@@ -13,7 +13,12 @@ int n, k, a[N];
 bool f(int x)
 {
     ll min_operation = 0;
-                                                                             
+    for (int i = (n + 1) / 2; i <= n; i++)
+    {
+        if (a[i] < x)
+            min_operation += x - a[i];
+    }
+    return min_operation <= k;
 }
 int32_t main()
 {
@@ -37,14 +42,11 @@ int32_t main()
     }
     cout << ans << '\n';
 }
-/*
-    //code ta basically ai vabe kaj kore
-    int x=0,ans=0;
-    while(f(x)){
+
+/* int ans, l = 0, r = 2e9;
+    while (f(x))
+    {
         ans = x;
         x++;
-}
-    cout<<ans<<'\n';
-//ai take ami binarry searching formula use koreci
-
-*/
+    }
+    cout << ans << '\n';*/

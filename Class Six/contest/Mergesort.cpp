@@ -1,61 +1,54 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ordered_set tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update>
 #define MTK                       \
     ios_base::sync_with_stdio(0); \
     cin.tie(0);                   \
     cout.tie(0);
-typedef long long int ll;
-#define all(x) x.begin(), x.end()
+#define mem(a, b) memset(a, b, sizeof(a))
+#define all(x) (x).begin(), (x).end()
+#define ll int long long
 #define mod 1000000007
-vector<int> v;
-auto merge(vector<int> l, vector<int> r)
+const int N = 1e5 + 9;
+int n, a[N], b[N];
+
+void solve(int l, int r)
 {
-    vector<int> ans;
-    int n = l.size(), m = r.size();
-    int i = 0, j = 0;
-    while (i < n and j < m)
-    {
-        if (l[i] < r[j])
-        {
-            ans.push_back(l[i]);
-            i++;
-        }
-        else
-        {
-            ans.push_back(r[j]);
-            j++;
-        }
-    }
-    while (i < n)
-    {
-        ans.push_back(l[i]);
-        i++;
-    }
-    while (j < m)
-    {
-        ans.push_back(r[j]);
-        j++;
-    }
-    return ans;
-}
-vector<int> merge_sort(int l, int r)
-{
-    if (l == r)
-        return {v[l]};
+    if (l >= r)
+        return;
+    // that is divide part and will be process recursion formula
     int mid = (l + r) / 2;
-    auto L = merge_sort(l, mid);
-    auto R = merge_sort(mid + 1, r);
-    return merge(L, R);
+    solve(l, mid);
+    solve(mid + 1, r);
+    // auto divide hoye hoye gece akhn marge korte hobe two ta divide part theke
+
+    // conqure part
+    int lp = l, rp = mid + 1;
+    for (int i = l; i <= r; i++)
+    {
+        if (lp > mid)
+            b[i] = a[rp++];
+        else if (rp > r)
+            b[i] = a[lp++];
+        else if (a[lp] <= a[rp])
+            b[i] = a[lp++];
+        else
+            b[i] = a[rp++];
+    }
+    for (int i = l; i <= r; i++)
+        a[i] = b[i];
 }
 int32_t main()
 {
     MTK;
-    int n;
-    while (cin >> n)
-        v.push_back(n);
-    int l = 0, r = v.size() - 1;
-    auto ans = merge_sort(l, r);
-    for (auto x : ans)
-        cout << x << ' ';
+    int x;
+    while (cin >> x)
+    {
+        n++;
+        a[n] = x;
+    }
+    solve(1, n);
+    for (int i = 1; i <= n; i++)
+        cout << a[i] << ' ';
+    cout << '\n';
+    return 0;
 }
