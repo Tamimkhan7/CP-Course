@@ -8,21 +8,51 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define ll int long long
 #define mod 1000000007
+const int N = 2e5 + 9;
+int n, m, q, l[N], r[N], x[N];
+
+bool ok(int k)
+{
+    int a[n + 1] = {};
+    for (int i = 1; i <= k; i++)
+        a[x[i]] = 1; // x[i] jei value ta oi array oi position ta 1 kore dew ai vabe continue koro
+                     // ar por prefix sum koro
+    for (int i = 1; i <= n; i++)
+        a[i] += a[i - 1];
+    // for (int i = 1; i <= n; i++)
+    //     cout << a[i] << ' ';
+    // cout << '\n';
+    for (int i = 1; i <= m; i++)
+    {
+        int cnt = a[r[i]] - a[l[i] - 1];
+        int len = r[i] - l[i] + 1;
+        if (len / 2 + 1 <= cnt)
+            return true;
+    }
+    return false;
+}
 void solve()
 {
-    int n, m;
     cin >> n >> m;
-    for (int i = 0; i < m; i++)
+    for (int i = 1; i <= m; i++)
+        cin >> l[i] >> r[i];
+    cin >> q;
+    for (int i = 1; i <= q; i++)
+        cin >> x[i];
+    // binary search on answer
+    int l = 1, r = q, ans = -1;
+    while (l <= r)
     {
-        int l,r;
-        cin >> l >> r;
+        int mid = (l + r) / 2;
+        if (ok(mid))
+        {
+            ans = mid;
+            r = mid - 1;
+        }
+        else
+            l = mid + 1;
     }
-    int q;cin>>q;
-    while (q--)
-    {
-        int change;
-        cin >> change;
-    }
+    cout << ans << '\n';
 }
 int32_t main()
 {

@@ -8,37 +8,25 @@ using namespace std;
 typedef long long int ll;
 #define all(x) x.begin(), x.end()
 #define mod 1000000007
-
 int32_t main()
 {
     MTK;
     int n, x;
     cin >> n >> x;
-    ll a[n + 1], pre[n + 1];
+    ll a[n + 1];
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
+    ll pre[n + 1];
     pre[0] = 0;
     for (int i = 1; i <= n; i++)
     {
-        cin >> a[i];
         pre[i] = pre[i - 1] + a[i];
     }
-    map<ll, ll> mp;
-    ll ans = 0;
-    for (int i = 1; i <= n; i++)
+    int cnt = 0;
+    for (auto find : pre)
     {
-        if (x == pre[i])
-            ans++;
+        if (find == x)
+            cnt++;
     }
-    for (int i = 1; i <= n; i++)
-    {
-        if (mp.find(pre[i] - x) != mp.end())
-        {
-            ans += mp[pre[i] - x];
-        }
-        mp[pre[i]]++;
-    }
-    for (auto [x, y] : mp)
-        cout << x << ' ' << y << '\n';
-
-    cout << ans << '\n';
-    return 0;
+    cout << cnt << '\n';
 }
