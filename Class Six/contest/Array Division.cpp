@@ -45,7 +45,7 @@ int32_t main()
         if (f(mid))
         {
             ans = mid;
-            cout << ans << '\n';
+            // cout << ans << '\n';
             r = mid - 1;
         }
         else

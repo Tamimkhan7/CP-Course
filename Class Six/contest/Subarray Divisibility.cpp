@@ -22,17 +22,18 @@ int32_t main()
         cin >> a[i];
         p[i] = p[i - 1] + a[i];
         p[i] %= n;
-        p[i] = (p[i] + n) % n;
+        p[i] = (p[i] + n) % n; // when my modular value is negative, that's why i added to the value of n with modular
     }
-    for (auto x : p)
-        cout << x << ' ';
-    cout << '\n';
+    // for (auto x : p)
+    //     cout << x << ' ';
+    // cout << '\n';
     ll ans = 0;
     map<int, int> mp;
     mp[p[0]]++;
     for (int i = 1; i <= n; i++)
     {
-        ans += mp[p[i]];
+        // aker odik digit asle oi gula add korbo but single digit hole oi gula add korar dorkar nai
+        ans += mp[p[i]]; // how many value digit will be here and if digiting value more than now add to the digit with ans
         mp[p[i]]++;
     }
     cout << ans << '\n';

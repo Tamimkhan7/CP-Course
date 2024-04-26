@@ -31,13 +31,11 @@ int32_t main()
     for (int i = 1; i <= n; i++)
     {
         if (mp.find(pre[i] - x) != mp.end())
-        {
             ans += mp[pre[i] - x];
-        }
         mp[pre[i]]++;
     }
-    for (auto [x, y] : mp)
-        cout << x << ' ' << y << '\n';
+    // for (auto [x, y] : mp)
+    //     cout << x << ' ' << y << '\n';
 
     cout << ans << '\n';
     return 0;

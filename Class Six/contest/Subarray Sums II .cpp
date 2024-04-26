@@ -19,13 +19,15 @@ int32_t main()
     ll pre[n + 1];
     pre[0] = 0;
     for (int i = 1; i <= n; i++)
-    {
         pre[i] = pre[i - 1] + a[i];
-    }
+
+    for (auto x : pre)
+        cout << x << ' ';
+    cout << '\n';
     int cnt = 0;
     for (auto find : pre)
     {
-        if (find == x)
+        if (find >= x)
             cnt++;
     }
     cout << cnt << '\n';
