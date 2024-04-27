@@ -16,19 +16,29 @@ int32_t main()
     ll a[n + 1];
     for (int i = 1; i <= n; i++)
         cin >> a[i];
-    ll pre[n + 1];
-    pre[0] = 0;
-    for (int i = 1; i <= n; i++)
-        pre[i] = pre[i - 1] + a[i];
 
-    for (auto x : pre)
-        cout << x << ' ';
-    cout << '\n';
-    int cnt = 0;
-    for (auto find : pre)
+    ll sum = 0, ans = 0;
+    map<ll, ll> mp;
+    for (int i = 1; i <= n; i++)
     {
-        if (find >= x)
-            cnt++;
+        sum += a[i];
+        if (sum == x)
+            ans++;
+        if (mp.count(sum - x))
+            ans += mp[sum - x];
+
+        mp[sum]++;
     }
-    cout << cnt << '\n';
+    cout << ans << '\n';
 }
+// ll ans = 0, sum = 0;
+// unordered_map<ll, int> prefixsum;
+// prefixsum[0] = 1;
+// for (int i = 1; i <= n; i++)
+// {
+//     sum += a[i];
+//     ans += prefixsum[sum - x];
+//     prefixsum[sum]++;
+// }
+// cout << ans << '\n';
+// }
