@@ -29,8 +29,8 @@ int32_t main()
         cin >> a[i];
         p[i] = p[i - 1] + a[i];
     }
-    for(auto x: p)cout<<x<<' ';
-    cout << '\n';
+    // for(auto x: p)cout<<x<<' ';
+    // cout << '\n';
 
     int l = 1, r = n, ans = 0;
 
