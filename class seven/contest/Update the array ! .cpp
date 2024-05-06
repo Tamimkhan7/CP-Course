@@ -9,24 +9,26 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define ll int long long
 #define mod 1000000007
-const int N = 1e5 + 9;
-ll a[N], d[N];
+// const int N = 1e4 + 9;
+// ll a[N], d[N];
 void solve()
 {
     int n, op;
     cin >> n >> op;
-    // vector<int> v(n, 0);
-    // for (int i = 0; i < n; i++)
-    //     d[i] = a[i] - a[i - 1];
+    vector<int> a(n, 0);
+
     while (op--)
     {
         int l, r, val;
         cin >> l >> r >> val;
-        d[l] += val;
-        d[r + 1] -= val;
+        a[l] += val;
+        a[r + 1] -= val;
     }
-    for (int i = 0; i < n; i++)
-        a[i] = a[i - 1] + d[i];
+    // for (auto x : a)
+    //     cout << x << ' ';
+    // cout << '\n';
+    for (int i = 1; i <= n; i++)
+        a[i] += a[i - 1];
     int q;
     cin >> q;
     while (q--)

@@ -9,32 +9,32 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define ll int long long
 #define mod 1000000007
-const int N = 1e5 + 9;
-int a[N];
 
 int32_t main()
 {
     MTK;
-    int n;
-    ll s;
-    cin >> n >> s;
+    int n, k;
+    cin >> n >> k;
+    int a[n + 1];
     for (int i = 1; i <= n; i++)
         cin >> a[i];
-    int r = 1;
-    ll ans = 0, sum = 0;
-    for (int l = 1; l <= n; l++)
+    int r = 1, ans = 0, mn = INT_MAX, sum = 0;
+    for (int l = 1; l <= n - k + 1; l++)
     {
         while (r <= n)
         {
-            if (sum+a[r] < s)
+            if ((r - l) < k)
                 sum += a[r++];
-                        else break;
+            else
+                break;
         }
+        // cout << l << ' ' << r << '\n';
         // cout << sum << '\n';
-        // cout << l << ' ' << r << ' ';
-        // if (sum >= s)
-            ans += n - r + 1;
-        // cout << ans << '\n';
+        if (sum < mn)
+        {
+            ans = l;
+            mn = sum;
+        }
         sum -= a[l];
     }
     cout << ans << '\n';
