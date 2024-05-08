@@ -13,23 +13,21 @@ int32_t main()
     cin >> n >> k;
     for (int i = 1; i <= n; i++)
         cin >> a[i];
-    multiset<int> se;
+    set<int> se;
     int r = 1;
     ll ans = 0;
     for (int l = 1; l <= n; l++)
     {
-        while (r <= n)
+        se.insert(a[r]);
+        while (r <= l and se.size() > k)
         {
-            if (se.size() < k)
-                se.insert(a[r++]);
-            else
-                break;
+            se.erase(a[r]);
+            r++;
         }
-        ans += r - l;
-        // for (auto x : se)
-        //     cout << x << ' ';
-        // cout << '\n';
-        se.erase(se.find(a[l]));
+
+        ans += r - l + 1;
+
+        // se.erase(se.find(a[l]));
     }
     cout << ans << '\n';
     return 0;

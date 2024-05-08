@@ -5,6 +5,7 @@ using namespace std;
     cin.tie(0);                   \
     cout.tie(0);
 #define ll int long long
+#define all(x) (x).begin(), (x).end()
 const ll N = 1e15;
 ll n;
 int k;
@@ -12,32 +13,25 @@ int32_t main()
 {
     MTK;
     cin >> n >> k;
-    ll ans = -1, l = 1, r = n;
-    if (n % k == 0)
+    vector<ll> v;
+    for (int i = 1; i <= sqrt(n); i++) // avoid unnessary element or duplicate element
     {
-        cout << k << '\n';
-        return 0;
-    }
-
-    while (l <= r)
-    {
-        ll mid = (l + r) / 2;
-        if (n % mid == 0 and mid >= k)
+        if (n % i == 0)
         {
-            ans = mid;
-            cout << ans << '\n';
-            return 0;
+            v.push_back(i);
+            if (i != sqrt(n))
+            {
+                // cout << i << ' ' << n / i << ' ';
+                v.push_back(n / i);
+            }
         }
-        else if (mid < k)
-            l = mid + 1;
-        else
-            r = mid - 1;
     }
-    if (n % n == 0)
-    {
-        cout << n << '\n';
-        return 0;
-    }
+    sort(all(v));
+    // cout << '\n';
+    if (k > v.size())
+        cout << -1 << '\n';
+    else
+        cout << v[k - 1] << '\n';
 
     return 0;
 }
