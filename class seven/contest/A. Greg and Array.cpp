@@ -8,7 +8,8 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define ll int long long
 #define mod 1000000007
-const int N = 1e5 + 9;
+const int N 
+= 1e5 + 9;
 int op[N], l[N], x[N], r[N];
 ll a[N], d[N];
 int32_t main()

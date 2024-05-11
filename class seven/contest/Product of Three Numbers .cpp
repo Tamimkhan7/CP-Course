@@ -14,18 +14,17 @@ void solve()
 {
     int n;
     cin >> n;
-    for (int i = 2; i * i <= n; i++)
+    for (int i = 2; i * i <= (n); i++)
     {
-        for (int j = 2; j * j <= n; j++)
+        if (n % i == 0)
         {
-            for (int k = 2; k * k <= n; k++)
+            n /= i;
+            for (int j = i + 1; j * j <= n; j++)
             {
-
-                int ans = i * j * k;
-                if (ans == n and i != j and j != k and i != k)
+                if (n % j == 0 and (n / j) > j)
                 {
-                    cout << "YES\n";
-                    cout << i << ' ' << j << ' ' << k << '\n';
+                    cout << "YES" << '\n';
+                    cout << i << ' ' << j << ' ' << n / j << '\n';
                     return;
                 }
             }
