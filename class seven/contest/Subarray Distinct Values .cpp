@@ -7,25 +7,43 @@ using namespace std;
     cout.tie(0);
 #define ll long long
 
-const int N = 2e5 + 5;
-int a[N], n, k;
+struct distinctcounter
+{
+    map<int, int> cnt;
+    void add(int x)
+    {
+        cnt[x]++;
+    }
+    void remove(int x)
+    {
+        cnt[x]--;
+        if (cnt[x] == 0)
+            cnt.erase(x);
+    }
+    int distinct()
+    {
+        return cnt.size();
+    }
+} ds;
+
 int main()
 {
     MTK;
+    int n, k;
     cin >> n >> k;
-    for (int i = 0; i < n; i++)
+    int a[n + 2];
+    for (int i = 1; i <= n; i++)
         cin >> a[i];
 
-    set<ll> se;
-    ll l = 0;
+    int l = 1;
     ll ans = 0;
 
-    for (ll r = 0; r < n; r++)
+    for (ll r = 1; r <= n; r++)
     {
-        se.insert(a[r]);
-        while (l <= r && se.size() > k)
+        ds.add(a[r]);
+        while (l <= r && ds.distinct() > k)
         {
-            se.erase(a[l]);
+            ds.remove(a[l]);
             l++;
         }
         ans += r - l + 1;

@@ -1,61 +1,47 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 #define MTK                       \
     ios_base::sync_with_stdio(0); \
     cin.tie(0);                   \
     cout.tie(0);
-#define mem(a, b) memset(a, b, sizeof(a))
-#define trace(x) cout << #x << ' ' << x << endl
-#define all(x) (x).begin(), (x).end()
-#define ll int long long
-#define mod 1000000007
 
-int32_t main()
+int main()
 {
     MTK;
     int n, m;
     cin >> n >> m;
-    int a[n + 1];
-    for (int i = 1; i <= n; i++)
+    vector<int> a(n);
+    set<int> se;
+    for (int i = 0; i < n; i++)
         cin >> a[i];
-
-    int r = 1, ans = INT_MAX;
-    multiset<int> se;
-    for (int l = 1; l <= n - m + 1; l++)
+    for (int i = 0; i <= n; i++)
+        se.insert(i);
+    map<int, int> mp;
+    for (int i = 0; i < m; i++)
     {
-        while (r <= n)
+        mp[a[i]]++;
+        se.erase(a[i]);
+    }
+    // for(auto [x,y]:mp)cout<<x<<' '<<y<<'\n';
+    // for(auto x: se)
+    //     cout << x << ' ';
+    int r = 1, ans = INT_MAX;
+    for (int i = 0; i <= n - m; i++)
+    {
+        ans = min(ans, *(se.begin()));
+        // cout << ans << '\n';
+        if (i + m < n)
         {
-            if (se.size() < m)
-                se.insert(a[r++]);
-            else
-                break;
-        }
-
-        // for (auto x : se)
-        //     cout << x << ' ';
-        // cout << '\n';
-        int mx = *se.rbegin();
-        int mn = *se.begin();
-        int res = 0;
-        for (int i = mn; i <= mx; i++)
-        {
-            if (se.find(i) == se.end())
+            mp[a[i]]--;
+            if (mp[a[i]] == 0)
             {
-                res = i;
-                break;
+                mp.erase(a[i]);
+                se.insert(a[i]);
             }
+            mp[a[i + m]]++;
+            se.erase(a[i + m]);
         }
-        // cout << res << ' ' << mn << '\n';
-        int flag = 0;
-        if (res == 0 and mn > 0)
-        {
-            res = mn - 1;
-            flag = 1;
-        }
-        if (res == 0 and flag == 0)
-            res = mx + 1;
-        ans = min(ans, res);
-        se.erase(se.find(a[l]));
     }
     cout << ans << '\n';
     return 0;
