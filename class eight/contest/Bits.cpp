@@ -12,13 +12,10 @@ using namespace std;
 string ok(int n)
 {
     string ans = "";
-    ll i = 0;
     while (n > 0)
     {
-        int x = n % 2;
-        ans += to_string(x);
-        n /= 2;
-        i++;
+        ans += to_string(n % 2);
+        n /= 2;      
     }
     return ans;
 }
@@ -55,10 +52,8 @@ void solve()
             ans = cnt;
         }
         if (cnt == s.size())
-            i = i * 2;
+            i *= 2;
     }
-    // }
-    // cout<<'\n';
     cout << res << '\n';
 }
 int32_t main()
