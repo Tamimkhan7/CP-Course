@@ -13,18 +13,13 @@ void solve()
 {
     int n;
     cin >> n;
-    cout << ((1 << __lg(n)) - 1) << '\n';
-    // ll ans = n;
-    // int x = n - (__lg(n));
-    // for (int i = n - 1; i >= x; i--)
-    // {
-    //     ans &= i;
-    //     if (ans == 0)
-    //     {
-    //         cout << i << '\n';
-    //         return;
-    //     }
-    // }
+    int a[n + 1];
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
+    ll ans = a[1];
+    for (int i = 2; i <= n; i++)
+        ans &= a[i];
+    cout << ans << '\n';
 }
 int32_t main()
 {
