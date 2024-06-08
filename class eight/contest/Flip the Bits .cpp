@@ -7,37 +7,54 @@ using namespace std;
 #define mem(a, b) memset(a, b, sizeof(a))
 #define trace(x) cout << #x << ' ' << x << endl
 #define all(x) (x).begin(), (x).end()
-#define ll int long long
+#define ll long long
 #define mod 1000000007
+
 void solve()
 {
     int n;
     cin >> n;
     string a, b;
     cin >> a >> b;
-    bool ans = false;
-    while (1)
+
+    if (a == b)
     {
-        if (a == b || (a.size() == 0 and b.size() == 0))
-        {
-            ans = true;
-            break;
-        }
-        while (!a.empty() and !b.empty() and a.back() == b.back())
-        {
-            a.pop_back();
-            b.pop_back();
-        }
-        for (int i = 0; i < a.size(); i++)
-        {
-            if (a[i] == '1')
-                a[i] = '0';
-            else
-                a[i] = '1';
-        }
-        cout << a << ' ' << b << '\n';
+        cout << "YES" << '\n';
+        return;
     }
-    if (ans)
+
+    int zero_count = 0, one_count = 0;
+    vector<int> prefix(n + 1, 0);
+
+    for (int i = 0; i < n; i++)
+    {
+        if (a[i] == '0')
+            zero_count++;
+        else
+            one_count++;
+        prefix[i + 1] = zero_count - one_count;
+        cout << prefix[i + 1] << ' ';
+    }
+    cout << '\n';
+    bool flag = true;
+    bool flipped = false;
+
+    for (int i = n - 1; i >= 0; i--)
+    {
+        char current_a = (flipped) ? (a[i] == '0' ? '1' : '0') : a[i];
+        cout << current_a << ' ';
+        if (current_a != b[i])
+        {
+            if (prefix[i + 1] != 0)
+            {
+                flag = false;
+                break;
+            }
+            flipped = !flipped;
+        }
+    }
+
+    if (flag)
         cout << "YES" << '\n';
     else
         cout << "NO" << '\n';
