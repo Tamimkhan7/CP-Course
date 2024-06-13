@@ -67,6 +67,7 @@ bool solve1()
     for (int i = 0, cnt = 0; i < n; i++)
     {
         cnt += (a[i] == '1' ? 1 : -1);
+        cout << cnt << '\n';
         if ((a[i] == b[i]) != (a[i + 1] == b[i + 1]) && cnt)
             return 0;
     }
