@@ -1,5 +1,5 @@
 
-// combination formula --- nCr = n!/(r!(n-r)!);
+// problem specific formula is = n!/3!1!1! -- n is number of size of the string , 3! is a is that the time occure to the string and 1! is b is number of time occure ana last one is c is ocuure 1 time to the string
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -53,12 +53,16 @@ int32_t main()
     cin >> s;
     int n = s.size();
     int ans = fact[n];
+    // cout << ans << '\n';
     map<char, int> mp;
     for (auto x : s)
         mp[x]++;
 
     for (auto [x, c] : mp)
+    {
+        // cout << c << ' ' << 1LL * ifact[c] % mod << '\n';
         ans = 1LL * ans * ifact[c] % mod;
+    }
     cout << ans << '\n';
 
     return 0;

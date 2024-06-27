@@ -1,0 +1,1 @@
+{"name":"Local: N Factorial! ","url":"/home/tamim/Desktop/CP course/class nine/contest/N Factorial! .cpp","tests":[{"id":1719510490293,"input":"5\n1\n2\n3\n7\n1018","output":"0001\n0002\n0006\n5040\n3649\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/tamim/Desktop/CP course/class nine/contest/N Factorial! .cpp","group":"local","local":true}
