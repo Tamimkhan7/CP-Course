@@ -14,7 +14,7 @@ using namespace std;
 
 const int N = 1e6 + 9, mod = 1e9 + 7;
 int fact[N], ifact[N];
-int power(int x, int n)
+int power(int x, int n, int mod)
 {
     int ans = 1 % mod;
     while (n > 0)
@@ -26,9 +26,10 @@ int power(int x, int n)
     }
     return ans;
 }
-int inverse(int a)
+
+int inverse(int a, int m)
 {
-    return power(a, mod - 2);
+    return power(a, m - 2, m);
 }
 void prec()
 {
