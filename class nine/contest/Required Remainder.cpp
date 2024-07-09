@@ -13,26 +13,17 @@ using namespace std;
 int32_t main()
 {
     MTK;
-    int t, cs = 0;
+    int t;
     cin >> t;
     while (t--)
     {
-        string s;
-        int b;
-        cin >> s >> b;
-        b = abs(b);
-        ll rem = 0, start = 0;
-
-        if (s[0] == '-')
-            s.erase(s.begin());
-
-        for (int i = 0; i < s.size(); ++i)
-            rem = (rem * 10 + (s[i] - '0')) % b;
-
-        if (rem == 0)
-            cout << "Case " << ++cs << ": divisible" << '\n';
+        int n, x, y;
+        cin >> x >> y >> n;
+        int max_multiple = n - n % x;
+        if (max_multiple + y <= n)
+            cout << max_multiple + y << '\n';
         else
-            cout << "Case " << ++cs << ": not divisible" << '\n';
+            cout << max_multiple + y - x << '\n';
     }
     return 0;
 }

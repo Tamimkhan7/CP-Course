@@ -10,9 +10,9 @@ using namespace std;
 #define ll int long long
 #define mod 10000007
 
-ll power(int x, int n)
+int power(int x, int n)
 {
-    ll ans = 1 % mod;
+    int ans = 1 % mod;
     while (n > 0)
     {
         if (n & 1)
@@ -30,16 +30,9 @@ int32_t main()
     {
         if (n == 0 and k == 0)
             break;
-        ll s[n + 1], p[n + 1], z[n + 1];
-        for (int i = 1; i <= n; i++)
-            s[i] = 1LL * power(i, k) % mod;
-
-        for (int i = 1; i <= n; i++)
-            p[i] = 1LL * power(i, i) % mod;
-        for (int i = 1; i <= n; i++)
-            z[i] = (s[i] + p[i]) % mod;
-
-        ll ans = z[n] + z[n - 1] % mod - (2 * z[n - 2]) % mod;
+        int ans = ((1LL * 2 * power(n - 1, k)) % mod + power(n, k)) % mod;
+        ans += ((1LL * 2 * power(n - 1, n - 1)) % mod + power(n, n)) % mod;
+        ans %= mod;
         cout << ans << '\n';
     }
     return 0;
