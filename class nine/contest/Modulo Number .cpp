@@ -4,25 +4,14 @@ using namespace std;
     ios_base::sync_with_stdio(0); \
     cin.tie(0);                   \
     cout.tie(0);
-#define mem(a, b) memset(a, b, sizeof(a))
-#define trace(x) cout << #x << ' ' << x << endl
-#define all(x) (x).begin(), (x).end()
+
 #define ll int long long
-#define mod 1000000007
-const int N = 998244353;
+const int m = 998244353;
 int32_t main()
 {
     MTK;
     ll n;
     cin >> n;
-    for (int i = 0; i < N; i++)
-    {
-        ll ans = n - i;
-        if (ans % N == 0)
-        {
-            cout << i << '\n';
-            return 0;
-        }
-    }
+    cout << (n % m + m) % m << '\n'; // n value is negative that's why we use + m that the answer
     return 0;
 }

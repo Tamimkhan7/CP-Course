@@ -9,16 +9,28 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define ll int long long
 
+int power(int x, int n, int mod)
+{
+    int ans = 1 % mod;
+    while (n > 0)
+    {
+        if (n & 1)
+            ans = 1LL * ans * x % mod;
+        x = 1LL * x * x % mod;
+        n >>= 1;
+    }
+    return ans;
+}
 int32_t main()
 {
     MTK;
-    int n, m;
-    cin >> n >> m;
-    // n = pow(2, n); //correct but my recommendation pow function does not use to the value
-    // cout << m % n << '\n';
-    if (n >= 30)
-        cout << m << '\n'; // 2^30 pore inter a ar asbe na amar mod ar value ta integer tai modde ai thakbe
-    else
-        cout << m % (1 << n) << '\n';
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int a, b;
+        cin >> a >> b;
+        cout << power(a, b, 10) << '\n';
+    }
     return 0;
 }

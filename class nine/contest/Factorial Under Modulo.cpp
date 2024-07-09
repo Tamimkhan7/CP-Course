@@ -15,10 +15,10 @@ int32_t main()
     MTK;
     int n;
     cin >> n;
-    ll fact = 1 % mod;
+    int fact = 1;
     for (int i = 1; i <= n; i++)
-        fact = fact * i % mod;
-    cout << fact << '\n';
+        fact = 1LL * fact * i % mod;
+    cout << fact<< '\n';
 
     return 0;
 }

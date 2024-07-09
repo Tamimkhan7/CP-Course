@@ -18,5 +18,5 @@ int32_t main()
         cout << "EVEN" << '\n';
     else
         cout << "ODD" << '\n';
-    return 0;
+    return 0;2
 }
