@@ -12,11 +12,11 @@ using namespace std;
 int power(int x, int n, int mod)
 {
     int ans = 1 % mod;
-    while (n > 0)
+    while (n)
     {
         if (n & 1)
-            ans = ans * x % mod;
-        x = x * x % mod;
+            ans = 1LL * ans * x % mod;
+        x = 1LL * x * x % mod;
         n >>= 1;
     }
     return ans;
