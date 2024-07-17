@@ -15,19 +15,20 @@ int32_t main()
     MTK;
     int n;
     cin >> n;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++)
+    vector<int> v(n + 1), vv;
+    for (int i = 1; i <= n; i++)
         cin >> v[i];
-    sort(all(v));
-    int x = v[0], cnt = 0;
-    for (auto xx : v)
+    int ans = 0;
+    // use two pointer mathod
+    for (int i = 1; i <= n / 2; i++)
     {
-        if (x == xx)
-            cnt++;
+        ans = __gcd(ans, abs(v[i] - v[n - i + 1]));
+        // cout << ans << ' ' << v[i] << ' ' << v[n - i + 1] << ' ' << abs(v[i] - v[n - i + 1]) << '\n';
     }
-    if (cnt == n)
+
+    if (ans == 0)
         cout << -1 << '\n';
-        else
-            cout << x << '\n';
-        return 0;
+    else
+        cout << ans << '\n';
+    return 0;
 }
