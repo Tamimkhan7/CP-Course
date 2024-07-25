@@ -19,18 +19,20 @@ int32_t main()
     {
         int a, b;
         cin >> a >> b;
-        int x = min(a, b);
-        int p = sqrt(x);
-        // cout<<x<<' '<<p<<'\n';
-        ll ans = 1e18;
-        while (p--)
-        {
-            ll xs = (x ^ a) + (x ^ b);
-            // cout << x << '\n';
-            ans = min(ans, xs);
-            x--;
-        }
-        cout << ans << '\n';
+        int x = a ^ b;
+
+        // int x = min(a, b);
+        // int p = sqrt(x);
+        // // cout<<x<<' '<<p<<'\n';
+        // ll ans = 1e18;
+        // while (p--)
+        // {
+        //     ll xs = (x ^ a) + (x ^ b);
+        //     // cout << x << '\n';
+        //     ans = min(ans, xs);
+        //     x--;
+        // }
+        cout << x << '\n';
     }
     return 0;
 }
