@@ -20,9 +20,9 @@ int32_t main()
         cin >> v[i];
     sort(all(v));
     reverse(all(v));
-    for (auto x : v)
-        cout << x << ' ';
-    cout << '\n';
+    // for (auto x : v)
+    //     cout << x << ' ';
+    // cout << '\n';
     ll x;
     cin >> x;
 

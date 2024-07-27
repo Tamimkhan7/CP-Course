@@ -21,7 +21,7 @@ int32_t main()
         cout << "Scenario #" << cs << '\n';
 
         map<int, int> team_id;
-        for (int i = 0; i < n; i++)
+        for (int i = 1; i <= n; i++)
         {
             int member;
             cin >> member;
@@ -43,9 +43,7 @@ int32_t main()
                 cin >> x;
                 int team = team_id[x];
                 if (!team_members[team].empty())
-                {
                     team_members[team].push(x);
-                }
                 else
                 {
                     team_queue.push(team);
@@ -60,7 +58,9 @@ int32_t main()
                 if (team_members[front_member].empty())
                     team_queue.pop();
             }
+            // cout << '\n';
         }
+        cout << '\n';
     }
     return 0;
 }
