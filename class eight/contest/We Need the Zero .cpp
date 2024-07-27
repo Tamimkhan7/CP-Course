@@ -13,37 +13,28 @@ void solve()
 {
     int n;
     cin >> n;
-    int a[n + 1], b[n + 1];
-    for (int i = 1; i <= n; i++)
+    int ans = 0;
+    for (int i = 0; i < n; i++)
     {
-        cin >> a[i];
-        b[i] = a[i];
+        int x;
+        cin >> x;
+        ans ^= x;
     }
-    int xx = 256, x = 0;
-
-    while (x < xx)
+    if (n % 2 == 0)
     {
-        int ans = 0;
-        for (int i = 1; i <= n; i++)
-            a[i] ^= x;
-        int p = 0;
-        for (int i = 1; i <= n; i++)
-            p ^= a[i];
-        if (p == 0)
-        {
-            cout << x << '\n';
-            return;
-        }
-        for (int i = 1; i <= n; i++)
-            a[i] = b[i];
-        x++;
+        if (ans == 0)
+            cout << 2 << '\n';
+        else
+            cout << -1 << '\n';
     }
-    cout << -1 << '\n';
+    else
+        cout << ans << '\n';
 }
 int32_t main()
 {
     MTK;
     int t;
+
     cin >> t;
     while (t--)
         solve();

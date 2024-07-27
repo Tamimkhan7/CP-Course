@@ -9,10 +9,7 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define ll int long long
 #define mod 1000000007
-int get_msb(int x)
-{
-    return __lg(x);
-}
+
 int32_t main()
 {
     MTK;
@@ -23,23 +20,33 @@ int32_t main()
         int n;
         cin >> n;
         vector<int> cnt(30, 0);
-        for (int i = 1; i <= n; i++)
+        for (int i = 0; i < n; i++)
         {
             int x;
             cin >> x;
-            int k = get_msb(x);
-            cnt[k]++;
+            for (int j = 0; j < 30; j++)
+            {
+                if ((x >> j) & 1)
+                    cnt[j]++; // protita bit ar jonno 1  ar count kore rekheci
+            }
         }
         // for (int i = 0; i < 30; i++)
-        // {
         //     cout << i << ' ' << cnt[i] << '\n';
-        // }
-        ll ans = 0;
-        for (int i = 0; i < 30; i++)
+        for (int k = 1; k <= n; k++)
         {
-            ans += 1LL * cnt[i] * (cnt[i] - 1) / 2; // cnt ar modde joto gula all pair kora jay oitaii niteci
+            bool flag = true;
+            for (int i = 0; i < 30; i++)
+            {
+                if (cnt[i] % k != 0)
+                {
+                    flag = false; // oi bit ar one ar count jodi k ar divisible na hoy tahole aita 0 kora possible na
+                    break;
+                }
+            }
+            if (flag)
+                cout << k << ' ';
         }
-        cout << ans << '\n';
+        cout << '\n';
     }
     return 0;
 }
