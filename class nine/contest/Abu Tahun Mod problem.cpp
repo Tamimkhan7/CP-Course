@@ -13,7 +13,7 @@ using namespace std;
 int32_t main()
 {
     MTK;
-    int n;
+    int n;a
     cin >> n;
     vector<int> v(n + 1), vv;
     for (int i = 1; i <= n; i++)
