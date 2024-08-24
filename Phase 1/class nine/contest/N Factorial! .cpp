@@ -11,6 +11,7 @@ using namespace std;
 const ll mod = 1e18 + 7;
 const int N = 1020;
 ll fact[N];
+
 int32_t main()
 {
     MTK;
