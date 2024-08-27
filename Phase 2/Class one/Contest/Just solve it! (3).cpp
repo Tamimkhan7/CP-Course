@@ -9,34 +9,25 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define ll int long long
 #define mod 1000000007
+const int N = 1e6 + 9;
+int d[N];
 int32_t main()
 {
     MTK;
     int n;
     cin >> n;
-
-    vector<ll> v;
-    for (int i = 2; i * i <= n; i++)
+    while (n--)
     {
-        if (n % i == 0)
+        int x;
+        cin >> x;
+        for (int i = 1; i <= x; i++)
         {
-            while (n % i == 0)
-            {
-                v.push_back(i);
-                n /= i;
-            }
+            for (int j = i; j <= x; j += i)
+                d[j]++;
         }
-    }
 
-    if (n > 1)
-        v.push_back(n);
-    sort(all(v));
-    for (int i = 0; i < v.size(); i++)
-    {
-        if (i > 0)
-            cout << '*';
-        cout << v[i];
+        cout << d[x] << '\n';
+        return 0;
     }
-
-    return 0;
 }
+

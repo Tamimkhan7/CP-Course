@@ -9,34 +9,30 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define ll int long long
 #define mod 1000000007
+
 int32_t main()
 {
     MTK;
-    int n;
-    cin >> n;
-
-    vector<ll> v;
-    for (int i = 2; i * i <= n; i++)
+    int y;
+    while (cin >> y and y != 0)
     {
-        if (n % i == 0)
+        int x = y;
+        vector<int> prime;
+        for (int i = 2; i * i <= y; i++)
         {
-            while (n % i == 0)
+            if (y % i == 0)
             {
-                v.push_back(i);
-                n /= i;
+                while (y % i == 0)
+                {
+                    prime.push_back(i);
+                    y /= i;
+                }
             }
         }
+        if (y > 1)
+            prime.push_back(y);
+        set<int> se(all(prime));
+        cout << x << " : " << se.size() << '\n';
     }
-
-    if (n > 1)
-        v.push_back(n);
-    sort(all(v));
-    for (int i = 0; i < v.size(); i++)
-    {
-        if (i > 0)
-            cout << '*';
-        cout << v[i];
-    }
-
     return 0;
 }
