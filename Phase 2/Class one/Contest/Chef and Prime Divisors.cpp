@@ -18,12 +18,12 @@ int32_t main()
         while (1)
         {
             ll g = __gcd(a, b);
-            cout << g << ' ';
+            // cout << g << ' ';
             if (g == 1)
                 break;
             b /= g;
         }
-        cout << '\n';
+        // cout << '\n';
         if (b == 1)
             cout << "Yes" << '\n';
         else

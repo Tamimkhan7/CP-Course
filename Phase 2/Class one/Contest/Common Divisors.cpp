@@ -22,7 +22,7 @@ int32_t main()
     ll gcd = 0;
 
     for (auto x : v)
-        gcd = __gcd(gcd, x); // find greatest common divisor
+        gcd = __gcd(gcd, x); 
     ll ans = 0;
     for (ll i = 1; i * i <= gcd; i++)
     {

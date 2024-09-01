@@ -70,7 +70,7 @@ int32_t main()
             if (ok2(x))
                 ans++;
         }
-        
+
         cout << ans << '\n';
     }
     return 0;

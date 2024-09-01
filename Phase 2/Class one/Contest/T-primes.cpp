@@ -1,3 +1,7 @@
+
+/*T-prime means jeitar 3 ta divisor thake but amra jani divisor count hoy holo -- p1^(e1+1)p2^(e2+1)...........pk(ek+1)*/
+/* we know divisor count formula is -- (e1+1)*(e2+1)*,,,,,,,,(ek+1),,, that's means t-pirme is means e-2 aita hole ami bolte parbo oita amar t-prime*/
+
 #include <bits/stdc++.h>
 using namespace std;
 #define MTK                       \
@@ -9,35 +13,39 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define ll long long
 #define mod 1000000007
-
-bool is_prime(ll n)
+const int N = 1e6 + 9;
+bool is_prime[N];
+void sieve()
 {
-    if (n <= 1)
-        return false;
-    if (n <= 3)
-        return true;
-    if (n % 2 == 0 || n % 3 == 0)
-        return false;
-    for (ll i = 5; i * i <= n; i += 6)
+    is_prime[1] = false;
+    for (int i = 2; i < N; i++)
+        is_prime[i] = true;
+    for (int i = 2; i < N; i++)
     {
-        if (n % i == 0 || n % (i + 2) == 0)
-            return false;
+        if (is_prime[i])
+        {
+            for (int j = i + i; j < N; j += i)
+                is_prime[j] = false;
+        }
     }
-    return true;
 }
-
 int32_t main()
 {
     MTK;
+    sieve();
     int n;
     cin >> n;
-    while (n--)
+    for (int i = 0; i < n; i++)
     {
         ll x;
         cin >> x;
-
-        ll root = sqrt(x);
-        if (root * root == x && is_prime(root))
+        int sq = sqrtl(x);
+        // better practices for sqrt function
+        while (1LL * sq * sq > x)
+            sq--;
+        while (1LL * sq * sq < x)
+            sq++;
+        if (1LL * sq * sq == x and is_prime[sq])
             cout << "YES" << '\n';
         else
             cout << "NO" << '\n';
