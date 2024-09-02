@@ -6,58 +6,45 @@ using namespace std;
     cout.tie(0);
 
 const int N = 1e7 + 9;
-bool f[N];
-vector<int> v;
-
+bitset<N> is_prime;
 void sieve()
 {
-    f[1] = true;
-    for (int i = 2; i * i <= N; i++)
+    is_prime[1] = false;
+    for (int i = 2; i < N; i++)
+        is_prime[i] = true;
+    for (int i = 2; i * i < N; i++)
     {
-        if (!f[i])
+        if (is_prime[i])
         {
-            for (int j = i * i; j <= N; j += i)
-                f[j] = true;
+            for (int j = i * i; j < N; j += i)
+                is_prime[j] = false;
         }
     }
-    for (int i = 2; i <= N; i++)
-    {
-        if (!f[i])
-            v.push_back(i);
-    }
-}
-bool ok(int n)
-{
-    if (n <= 1)
-        return false;
-    return !f[n];
 }
 int32_t main()
 {
     MTK;
     sieve();
+    vector<int> prime;
+    for (int i = 1; i <= N; i++)
+    {
+        if (is_prime[i])
+            prime.push_back(i);
+    }
     int t, cs = 0;
     cin >> t;
     while (t--)
     {
         int n;
         cin >> n;
-        vector<int> prime;
-        for (auto x : v)
-        {
-            if (x <= n)
-                prime.push_back(x);
-            else
-                break;
-        }
-        // for (auto x : prime)
-        //     cout << x << ' ';
-        // cout << '\n';
+
         int ans = 0;
         for (auto a : prime)
         {
+            if (a > n)
+                break;
             int b = n - a;
-            if (ok(b) == true and a <= b)
+            if (is_prime[b] and a <= b)
                 ans++;
         }
         cout << "Case " << ++cs << ": " << ans << '\n';
