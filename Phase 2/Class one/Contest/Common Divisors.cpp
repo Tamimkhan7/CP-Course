@@ -18,13 +18,14 @@ int32_t main()
     vector<ll> v(n);
     for (int i = 0; i < n; i++)
         cin >> v[i];
-    sort(all(v));
+    // amra jani onek gula digit ar divisor ber korle ader modder common divisor holo ader gcd
     ll gcd = 0;
 
     for (auto x : v)
-        gcd = __gcd(gcd, x); 
+        gcd = __gcd(gcd, x);
     ll ans = 0;
-    for (ll i = 1; i * i <= gcd; i++)
+    // max gcd hote pare ader x ar value like vector an element ar value,,jehetu a[i]<=1e12 that's means gcd is almost 1e12
+    for (ll i = 1; 1LL * i * i <= gcd; i++)
     {
         if (gcd % i == 0)
         {

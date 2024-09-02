@@ -11,48 +11,73 @@ using namespace std;
 #define mod 1000000007
 
 const int N = 1e6 + 9;
-bool f[N];
-bool ok(int n)
+bool is_prime[N];
+
+void prime_sieve()
 {
-    for (int i = 2; i * i <= n; i++)
+    is_prime[1] = false;
+    for (int i = 2; i < N; i++)
+        is_prime[i] = true;
+
+    for (int i = 2; i < N; i++)
     {
-        if (n % i == 0)
-            return false;
+        if (is_prime[i])
+        {
+            for (int j = i + i; j < N; j += i)
+                is_prime[j] = false;
+        }
     }
-    return true;
 }
-bool ok2(int n)
+
+bool suffix_sum_is_prime(int n)
 {
     string s = to_string(n);
-    for (auto x : s)
+    int len = s.size();
+    for (int i = 0; i < len; i++)
     {
-        if (x == '0')
+        string suffix_dig = s.substr(i); // i theke last projnto all digit count korbe
+        int val = stoi(suffix_dig);
+        if (!is_prime[val])
             return false;
     }
     return true;
 }
+
+bool has_digit_zero(int n)
+{
+    while (n > 0)
+    {
+        if (n % 10 == 0)
+            return false;
+        n /= 10;
+    }
+    return true;
+}
+
+bool is_valid(int n)
+{
+    if (!is_prime[n])
+        return false;
+    if (!has_digit_zero(n))
+        return false;
+    if (!suffix_sum_is_prime(n))
+        return false;
+    return true;
+}
+
+bool valid[N];
+int cnt_suffix_ans[N];
+
 int32_t main()
 {
     MTK;
-    f[1] = true;
-    vector<int> v;
-    for (int i = 2; i * i <= N; i++)
+    prime_sieve();
+    for (int i = 1; i < N; i++)
     {
-        if (!f[i])
-        {
-            v.push_back(i);
-            for (int j = i * i; j <= N; j += i)
-                f[j] = true;
-        }
+        valid[i] = is_valid(i);
+        // cout << valid[i] << ' ' << is_valid[i] << '\n';
+        cnt_suffix_ans[i] = cnt_suffix_ans[i - 1] + valid[i];
     }
-    for (int i = 2; i <= N; i++)
-    {
-        if (!f[i])
-            v.push_back(i);
-    }
-    // for (auto x : v)
-    //     cout << x << ' ';
-    // cout << '\n';
 
     int t;
     cin >> t;
@@ -60,18 +85,7 @@ int32_t main()
     {
         int n;
         cin >> n;
-        int sz = v.size();
-        int ans = 0;
-        for (int i = 0; i <= sz; i++)
-        {
-            int x = v[i];
-            if (x > n)
-                break;
-            if (ok2(x))
-                ans++;
-        }
-
-        cout << ans << '\n';
+        cout << cnt_suffix_ans[n] << '\n';
     }
     return 0;
 }
