@@ -17,11 +17,9 @@ int32_t main()
     cin >> l >> r;
     ll x = (r - l) + 1;
     cout << "YES" << '\n';
-    for (ll i = l; i < r; i++)
-    {
+    for (ll i = l; i < r; i += 2)
         cout << i << ' ' << i + 1 << '\n';
-        i++;
-    }
+
     // cout << "NO" << '\n';
 
     return 0;
