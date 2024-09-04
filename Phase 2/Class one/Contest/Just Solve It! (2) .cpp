@@ -13,21 +13,8 @@ using namespace std;
 int32_t main()
 {
     MTK;
-
-    ll n;
-    cin >> n;
-    ll x = sqrtl(n);
-    int ans = 0;
-    for (int p = 2; p * p <= x; p++)
-    {
-        if (x % p == 0)
-        {
-            ans = max(ans, p);
-            while (x % p == 0)
-                x /= p;
-        }
-    }
-    if (x > 1)
-        ans = max(ans, (int)x);
-    cout << ans << '\n';
+    ll a, b, p;
+    cin >> a >> b >> p;
+    
+    return 0;
 }
