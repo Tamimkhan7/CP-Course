@@ -25,6 +25,6 @@ int32_t main()
     int x, m;
     ll n;
     cin >> x >> n >> m;
-
+    cout << power(x, n, m) << '\n';
     return 0;
 }

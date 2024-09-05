@@ -29,7 +29,7 @@ ll power(int x, ll n, int mod)
 int32_t main()
 {
     MTK;
-    int x = 1e9, n = 1e18, m = 1e9 + 7;
+    ll x = 1e9, n = 1e18, m = 1e9 + 7;
     cout << power(x, n, m) << '\n';
     return 0;
 }
