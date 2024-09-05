@@ -9,32 +9,38 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define ll int long long
 #define mod 1000000007
+#define N 20000000
 
-const int N = 2e7 + 9;
-bool f[N];
-int32_t main()
+vector<pair<int, int>> twin_primes;
+vector<bool> is_prime(N + 1, true);
+
+void sieve()
 {
-    MTK;
+    is_prime[1] = false;
 
-    f[1] = true;
-    vector<int> v;
-    for (int i = 2; i * i < N; i++)
+    for (int i = 2; i * i <= N; i++)
     {
-        if (!f[i])
+        if (is_prime[i])
         {
-            v.push_back(i);
-            for (int j = i * i; j < N; j += i)
-                f[j] = true;
+            for (int j = i * i; j <= N; j += i)
+                is_prime[j] = false;
         }
     }
-    for (int i = 2; i < N; i++)
+
+    for (int i = 2; i <= N - 2; i++)
     {
-        if (!f[i])
-            v.push_back(i);
+        if (is_prime[i] && is_prime[i + 2])
+            twin_primes.push_back({i, i + 2});
     }
+}
+
+int main()
+{
+    MTK;
+    sieve();
     int n;
     while (cin >> n)
-        cout << "(" << v[n] << "," << v[n + 1] << ")" << '\n';
+        cout << "(" << twin_primes[n - 1].first << ", " << twin_primes[n - 1].second << ")\n";
 
     return 0;
 }

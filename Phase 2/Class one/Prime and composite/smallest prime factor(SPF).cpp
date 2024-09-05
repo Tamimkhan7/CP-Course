@@ -20,8 +20,11 @@ int32_t main()
     // sob gula jonno age smallest prime factorization ber kore rekhe dici
     for (int i = 2; i < N; i++)
     {
-        for (int j = i; j < N; j += i)
-            spf[j] = min(spf[j], i); // minimum value ta store kore rakhteci//like 8 ar jonno 2
+        if (spf[i] == i)
+        {
+            for (int j = i; j < N; j += i)
+                spf[j] = min(spf[j], i); // minimum value ta store kore rakhteci//like 8 ar jonno 2
+        }
     }
     for (int i = 1; i < N; i++)
         cout << i << ' ' << spf[i] << '\n';
