@@ -13,7 +13,7 @@ int32_t main()
     // like 10 = 2^1*3^0*5^1// that is ugly numbers
     vector<ll> ugly_num;
     ll p2 = 1;
-    // let assume total number of time this loop consider about 60's 
+    // let assume total number of time this loop consider about 60's
     for (int x = 0; p2 <= N; x++, p2 *= 2)
     {
         // p2 = 2^x
