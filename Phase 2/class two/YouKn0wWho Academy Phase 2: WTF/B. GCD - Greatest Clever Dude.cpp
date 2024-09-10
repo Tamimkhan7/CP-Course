@@ -9,17 +9,25 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define ll int long long
 #define mod 1000000007
-
+string gcd(string a, string b)
+{
+    if (a.size() < b.size())
+        return gcd(b, a);
+    else if (a.find(b) != 0)
+        return "";
+    else if (b == "")
+        return a;
+    else
+        return gcd(a.substr(b.size()), b);
+}
 int32_t main()
 {
     MTK;
-    ll n;
-    cin >> n;
-    int lcm = 2;
-    for (int i = 3; i <= 10; i++)
-        lcm = (lcm * i) / (__gcd(lcm, i));
-    // cout << lcm << '\n';
-    cout << n / lcm << '\n';
-
-    return 0;
+    string a, b;
+    cin >> a >> b;
+   if(a==b)
+       cout << a << '\n';
+       else
+           cout << 1 << '\n';
+       return 0;
 }
