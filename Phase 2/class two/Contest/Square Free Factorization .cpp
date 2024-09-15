@@ -10,18 +10,25 @@ using namespace std;
 #define ll int long long
 #define mod 1000000007
 const int N = 1e6 + 9;
-int spf[N];
+bool f[N];
+vector<int> prime;
+
 void sieve()
 {
-    for (int i = 1; i < N; i++)
-        spf[i] = i;
-    for (int i = 2; i < N; i++)
+    f[1] = true;
+    for (int i = 2; i * i <= N; i++)
     {
-        if (spf[i] == i)
+        if (!f[i])
         {
-            for (int j = i; j < N; j += i)
-                spf[j] = min(spf[j], i);
+            prime.push_back(i);
+            for (int j = i * i; j <= N; j += i)
+                f[j] = true;
         }
+    }
+    for (int i = 2; i <= N; i++)
+    {
+        if (!f[i])
+            prime.push_back(i);
     }
 }
 int32_t main()
@@ -34,10 +41,10 @@ int32_t main()
     {
         int n;
         cin >> n;
-        int ans = INT_MIN;
-        for (int i = 2; i * i < N; i++)
+        int ans = 1, sz = prime.size();
+        for (int i = 0; i < sz and prime[i] * prime[i] <= n; i++)
         {
-            int p = i;
+            int p = prime[i];
             int e = 0;
             if (n % p == 0)
             {
