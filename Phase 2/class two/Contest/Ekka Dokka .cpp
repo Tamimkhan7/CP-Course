@@ -1,3 +1,6 @@
+
+/*problem holo == n*m==w jekhane n holo even and m holo odd*/
+
 #include <bits/stdc++.h>
 using namespace std;
 #define MTK                       \
@@ -14,21 +17,22 @@ int32_t main()
     while (t--)
     {
         cout << "Case " << ++cs << ": ";
-        ll n;
-        cin >> n;
+        ll w;
+        cin >> w;
 
-        if (n & 1)
+        if (w % 2 == 1) // mane holo m ke 2 banano possible na,,karon amra jani prime ar even value holo only 2 others all value are odd
         {
             cout << "Impossible" << '\n';
             continue;
         }
-        ll x = 1;
-        while (n % 2 == 0)
+        ll m = 1;
+        while (w % 2 == 0)
         {
-            x *= 2;
-            n /= 2;
+            m *= 2;
+            w /= 2;
         }
-        cout << n << ' ' << x << '\n';
+        ll n = w;
+        cout << n << ' ' << m << '\n';
     }
 
     return 0;

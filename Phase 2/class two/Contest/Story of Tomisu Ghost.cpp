@@ -1,94 +1,57 @@
-#include <bits/stdc++.h>
-using namespace std;
-#define MTK                       \
-    ios_base::sync_with_stdio(0); \
-    cin.tie(0);                   \
-    cout.tie(0);
-#define mem(a, b) memset(a, b, sizeof(a))
-#define trace(x) cout << #x << ' ' << x << endl
+class Solution
+{
+public:
+    long long heightReducedInTime(long long time, int work_time)
+    {
 #define all(x) (x).begin(), (x).end()
 #define ll int long long
-#define mod 10000019
-const int N = 1e5 + 9;
-vector<int> prime;
-bool is_prime[N];
-
-// sieve find all prime value in 1 to N
-void sieve()
-{
-    for (int i = 2; i < N; i++)
-        is_prime[i] = true;
-    for (int i = 2; i < N; i++)
-    {
-        if (is_prime[i])
+        ll l = 1, r = sqrt(2 * time / work_time) + 1, mid;
+        while (l <= r)
         {
-            for (int j = i + i; j < N; j += i)
-                is_prime[j] = false;
+            mid = l + (r - l) / 2;
+            ll req_time = work_time * mid * (mid + 1) / 2;
+            if (req_time <= time)
+            {
+                left = mid + 1;
+            }
+            else
+            {
+                right = mid - 1;
+            }
         }
+        return right;
     }
-    for (int i = 2; i < N; i++)
-    {
-        if (is_prime[i])
-            prime.push_back(i);
-    }
-}
 
-// given a interger n and a prime number is p, find the largest x such that p^x divides n! in O(logn) time complexity
-int legendre(int n, int p)
-{
-    int ans = 0;
-    while (n)
+    bool canReduceHeight(ll totalTime, int mountainHeight, const vector<int> &workerTimes)
     {
-        ans += n / p;
-        n /= p;
-    }
-    return ans;
-}
-
-// find(a ^ b) % mod
-
-int power(int a, int b)
-{
-    int ans = 1;
-    while (b)
-    {
-        if (b & 1)
-            ans = 1LL * ans * a % mod;
-        a = 1LL * a * a % mod;
-        b >>= 1;
-    }
-    return ans;
-}
-int32_t main()
-{
-    MTK;
-    sieve();
-    // for (auto x : prime)
-    //     cout << x << ' ';
-    // cout << '\n';
-    int tt, cs = 0;
-    cin >> tt;
-    while (tt--)
-    {
-        cout << "Case " << ++cs << ": ";
-        int n, t;
-        cin >> n >> t;
-        int b = 1; // b for base,,find maximum base for n factorial and match the t trailling zero
-        bool ok = false;
-        for (auto p : prime)
+        long long total_highet = 0;
+        for (int workerTime : workerTimes)
         {
-            if (p > n)
-                break;
-            int x = legendre(n, p);
-            int e = x / t;
-            if (e > 0)
-                ok = true;
-            b = 1LL * b * power(p, e) % mod;
+            total_highet += heightReducedInTime(totalTime, workerTime);
+            if (total_highet >= mountainHeight)
+                return true;
         }
-        if (!ok)
-            b = -1;
-        cout << b << '\n';
+        return total_highet >= mountainHeight;
     }
-    return 0;
-}
-// bujte hobe problem and solution
+
+    long long minNumberOfSeconds(int mountainHeight, vector<int> &workerTimes)
+    {
+        long long left = 1, right = 1e15, result = right;
+
+        while (left <= right)
+        {
+            long long mid = left + (right - left) / 2;
+            if (canReduceHeight(mid, mountainHeight, workerTimes))
+            {
+                result = mid;
+                right = mid - 1;
+            }
+            else
+            {
+                left = mid + 1;
+            }
+        }
+
+        return result;
+    }
+};

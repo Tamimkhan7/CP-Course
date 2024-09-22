@@ -10,6 +10,18 @@ using namespace std;
 #define ll int long long
 #define mod 1000000007
 
+int count_leap_year_in_pre(int year)
+{
+    int ans = year / 4;
+    ans -= year / 100;
+    ans += year / 400;
+    return ans;
+}
+int count_leap_year(int start_year, int end_year)
+{
+    // using prefix sum formula below the line
+    return count_leap_year_in_pre(end_year) - count_leap_year_in_pre(start_year - 1);
+}
 int32_t main()
 {
     MTK;
@@ -41,10 +53,11 @@ int32_t main()
         if (mo2 == 1 || (mo2 == 2 and d2 < 29))
             y2--;
 
-        int mul_of_4 = y2 / 4 - (y1 - 1) / 4;
-        int mul_of_400 = y2 / 400 - (y1 - 1) / 400;
-        int mul_of_100 = y2 / 100 - (y1 - 1) / 100;
-        int ans = mul_of_4 + mul_of_400 - mul_of_100;
+        // int mul_of_4 = y2 / 4 - (y1 - 1) / 4;
+        // int mul_of_400 = y2 / 400 - (y1 - 1) / 400;
+        // int mul_of_100 = y2 / 100 - (y1 - 1) / 100;
+        // int ans = mul_of_4 + mul_of_400 - mul_of_100;
+        int ans = count_leap_year(y1, y2);
         cout << ans << '\n';
     }
     return 0;
