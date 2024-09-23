@@ -19,19 +19,20 @@ int32_t main()
     {
         int d, n;
         cin >> d >> n;
-        vector<int> v(n);
-        for (int i = 0; i < n; i++)
+        vector<int> v(n + 1);
+        for (int i = 1; i <= n; i++)
             cin >> v[i];
 
         vector<ll> pref(n + 1, 0);
+        for (int i = 1; i <= n; i++)
+            pref[i] = pref[i - 1] + v[i];
         map<int, int> freq;
         freq[0] = 1;
         int cnt = 0;
-
-        for (int i = 1; i <= n; i++)
+        /* answer is sum = pref[r]-pref[l-1],, then sum%d==0, ans count*/
+        for (int r = 1; r <= n; r++)
         {
-            pref[i] = pref[i - 1] + v[i - 1];
-            int modu = ((pref[i] % d) + d) % d;
+            int modu = ((pref[r] % d) + d) % d; // for negativity ignore
             cnt += freq[modu];
             freq[modu]++;
         }
