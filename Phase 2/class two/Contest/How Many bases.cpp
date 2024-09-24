@@ -8,45 +8,46 @@ using namespace std;
 #define trace(x) cout << #x << ' ' << x << endl
 #define all(x) (x).begin(), (x).end()
 #define ll int long long
-#define mod 1000000007
+#define mod 100000007
 
-int power2(int x, int n)
+int solve_greater_than_or_equal(vector<int> e, int t)
 {
-    int ans = 1 % mod;
-    while (n > 0)
-    {
-        if (n & 1)
-            ans = 1LL * ans * x % mod;
-        x = 1LL * x * x % mod;
-        n >>= 1;
-    }
+    int ans = 1;
+    for (int i = 0; i < e.size(); i++)
+        ans = 1LL * ans * (e[i] / t + 1) % mod;
+
     return ans;
 }
-
-ll power(ll x, ll n)
+int solve_equal(vector<int> e, int t)
 {
-    ll ans = 1;
-    while (n > 0)
-    {
-        if (n & 1)
-        {
-            ans *= x;
-        }
-        x *= x;
-        n >>= 1;
-    }
-    return ans;
+    return (solve_greater_than_or_equal(e, t) - solve_greater_than_or_equal(e, t + 1) + mod) % mod;
 }
 
 int32_t main()
 {
     MTK;
-    int n, m, t;
-    while (cin >> n >> m >> t)
+    int n, m, t, cs = 0;
+    while (cin >> n >> m >> t and n > 0)
     {
-        if (n == 0 and m == 0 and t == 0)
-            break;
-        cout << power2(n, m) << '\n';
+        vector<int> e;
+        for (int i = 2; i * i <= n; i++)
+        {
+            int x = i;
+            if (n % x == 0)
+            {
+                int cnt = 0;
+                while (n % x == 0)
+                {
+                    cnt++;
+                    n /= x;
+                }
+                e.push_back(cnt * m);
+            }
+        }
+        if (n > 1)
+            e.push_back(1 * m);
+        cout << "Case " << ++cs << ": ";
+        cout << solve_equal(e, t) << '\n';
     }
     return 0;
 }

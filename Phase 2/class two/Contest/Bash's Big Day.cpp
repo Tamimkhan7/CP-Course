@@ -28,7 +28,10 @@ int32_t main()
     {
         int cnt = 0;
         for (int j = i; j < N; j += i)
+        {
             cnt += freq[j];
+            // cout << cnt << '' << freq[j] << '\n';
+        } 
         ans = max(ans, cnt);
     }
     cout << max(ans, 1) << '\n';

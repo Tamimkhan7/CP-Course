@@ -9,14 +9,14 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define ll int long long
 #define mod 1000000007
-const int N = 1e8;
+const int N = 1e8; // N digit trailing zero having into the number
 
 int fact_trailing_zeros(int n)
 {
     int cnt = 0;
     // for (int i = 5; n / i >= 1; i *= 5)
     //     cnt += n / i;
-    while (n != 0)
+    while (n)
     {
         cnt += n / 5;
         n /= 5;
@@ -56,14 +56,14 @@ int32_t main()
 
     while (t--)
     {
-        cout << "Case " << ++cs << ": ";
         int q;
         cin >> q;
-
-        if (find_min_n(q) == -1)
+        int zeros = find_min_n(q);
+        cout << "Case " << ++cs << ": ";
+        if (zeros == -1)
             cout << "impossible" << '\n';
         else
-            cout << find_min_n(q) << '\n';
+            cout << zeros << '\n';
     }
 
     return 0;

@@ -32,6 +32,7 @@ void sieve()
             prime.push_back(i);
     }
 }
+
 int32_t main()
 {
     MTK;
@@ -57,6 +58,7 @@ int32_t main()
                     x /= p;
                 }
             }
+            // cout << p << ' ' << e << '\n';
             number_of_div = 1LL * number_of_div * (e + 1) % mod;
         }
 

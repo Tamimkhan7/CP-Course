@@ -23,6 +23,8 @@ int32_t main()
         for (int i = 1; i <= n; i++)
             cin >> v[i];
         bool ok = true;
+        /*for example --- 2 3 4 lcm is 12 and 2 3 4 5 lcm is 60 jodi 60 ai gula divided hobe ai, ai gula 60 jodi age mark kore rakhi tahole 60 kace jawa lagtece na ar,,,,,,,, ar lcm onek fast bare like as like factorial*/
+        /* as like 22 moto nile amar salution accepted , karon 22 ar value 1e9 a cross kore pele*/
         for (int i = 1; i <= min(n, 21); i++)
         {
             bool flag = false;
