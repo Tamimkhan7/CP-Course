@@ -10,45 +10,38 @@ using namespace std;
 #define ll int long long
 #define mod 1000000007
 
-ll ok(vector<ll> a, int c)
-{
-    ll cost = 0;
-    ll cur_pow = 1;
-
-    for (int i = 0; i < a.size(); ++i)
-    {
-        cost += abs(a[i] - cur_pow);
-        if (cur_pow > LLONG_MAX / c)
-            break;
-        cur_pow *= c;
-    }
-    // cout << cur_pow << ' ' << cost << ' ' << LLONG_MAX << '\n';
-    return cost;
-}
-
-int main()
+const ll MAX = 2e14;
+int32_t main()
 {
     MTK;
     int n;
     cin >> n;
-
-    vector<ll> a(n);
-    for (int i = 0; i < n; ++i)
+    int a[n];
+    for (int i = 0; i < n; i++)
         cin >> a[i];
-
-    sort(all(a));
-    ll mn_cost = LLONG_MAX;
-
-    for (int c = 1; c <= 100000; ++c)
+    sort(a, a + n);
+    ll ans = MAX;
+    for (int c = 1;; c++)
     {
-        ll cost = ok(a, c);
-        mn_cost = min(mn_cost, cost);
+        ll operation = 0;
+        vector<__int128_t> c_pw(n);
+        c_pw[0] = 1;
+        for (int i = 1; i < n; i++)
+            c_pw[i] = c_pw[i - 1] * c;
 
-        if (cost > mn_cost * 10)
+        // for (int i = 0; i < n; i++)
+        //     cout << c_pw[i] << ' ';
+        // cout << '\n';
+        if (c_pw[n - 1] > MAX)
             break;
+        for (int i = 0; i < n; i++)
+        {
+            operation += abs(a[i] - (long long)c_pw[i]);
+            if (operation > MAX)
+                break;
+        }
+        ans = min(ans, operation);
     }
-
-    cout << mn_cost << endl;
-
+    cout << ans << '\n';
     return 0;
 }

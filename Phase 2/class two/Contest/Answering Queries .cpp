@@ -38,7 +38,7 @@ int32_t main()
             cin >> v[i];
         ll sum = 0;
         for (int i = 0; i < n; i++)
-            sum += 1LL * v[i] * (n - 2 * i - 1);
+            sum += 1LL * v[i] * (n - 2 * i - 1); // use contribution technique
         // cout << sum << '\n';
         while (q--)
         {
@@ -50,9 +50,9 @@ int32_t main()
             {
                 int i, x;
                 cin >> i >> x;
-                sum -= 1LL * v[i] * (n - 2 * i - 1);
+                sum -= 1LL * v[i] * (n - 2 * i - 1); // while index update before, this index contribution decrease
                 v[i] = x;
-                sum += 1LL * v[i] * (n - 2 * i - 1);
+                sum += 1LL * v[i] * (n - 2 * i - 1); // then we will update this index how much contribution of this index
             }
         }
     }
