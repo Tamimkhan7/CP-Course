@@ -19,17 +19,16 @@ int32_t main()
     for (int i = 0; i < n; ++i)
         cin >> a[i];
 
-    ll mx = *max_element(all(a));
+    ll x = *max_element(all(a));
 
-    ll z = 0;
+    ll z = 0; // z ar value joto minimum nite pari y value toto maximum howar possiblity bare
     for (int i = 0; i < n; ++i)
-        z = __gcd(z, mx - a[i]);
+        z = __gcd(z, x - a[i]);
 
     ll y = 0;
     for (int i = 0; i < n; ++i)
-        y += (mx - a[i]) / z;
+        y += (x - a[i]) / z;
 
-    cout << y << " " << z << endl;
+    cout << y << " " << z << '\n';
     return 0;
 }
-// bujte hobe solution and problem ta
