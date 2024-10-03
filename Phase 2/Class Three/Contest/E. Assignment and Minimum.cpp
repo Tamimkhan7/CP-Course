@@ -11,38 +11,38 @@ using namespace std;
 #define mod 1000000007
 
 const int N = 1e5 + 9;
-const ll INF = -1e18 + 9;
+const ll INF = 1e14;
 int a[N];
 ll t[N * 4], lazy[4 * N];
 
 void push(int node, int b, int e)
 {
-    if (lazy[node] == 0)
+    if (lazy[node] == -1)
         return;
-    t[node] = max(t[node], lazy[node]);
+    t[node] =  lazy[node];
     if (b != e)
     {
-        ll mid = (b + e) / 2;
-        ll l = 2 * node, r = 2 * node + 1;
-        lazy[l] = max(lazy[l], lazy[node]);
-        lazy[r] = max(lazy[r], lazy[node]);
+        int mid = (b + e) / 2;
+        int l = 2 * node, r = 2 * node + 1;
+        lazy[l] = min(lazy[l], lazy[node]);
+        lazy[r] = min(lazy[r], lazy[node]);
     }
-    lazy[node] = 0;
+    lazy[node] = -1;
 }
 
 void build(int node, int b, int e)
 {
-    lazy[node] = 0;
+    lazy[node] = -1;
     if (b == e)
     {
         t[node] = a[b];
         return;
     }
-    ll mid = (b + e) / 2;
-    ll l = 2 * node, r = 2 * node + 1;
+    int mid = (b + e) / 2;
+    int l = 2 * node, r = 2 * node + 1;
     build(l, b, mid);
     build(r, mid + 1, e);
-    t[node] = max(t[l], t[r]);
+    t[node] = min(t[l], t[r]);
 }
 
 void update(int node, int b, int e, int i, int j, int v)
@@ -58,11 +58,11 @@ void update(int node, int b, int e, int i, int j, int v)
         return;
     }
 
-    ll mid = (b + e) / 2;
-    ll l = 2 * node, r = 2 * node + 1;
+    int mid = (b + e) / 2;
+    int l = 2 * node, r = 2 * node + 1;
     update(l, b, mid, i, j, v);
     update(r, mid + 1, e, i, j, v);
-    t[node] = max(t[l], t[r]);
+    t[node] = min(t[l], t[r]);
 }
 
 ll query(int node, int b, int e, int i, int j)
@@ -73,9 +73,9 @@ ll query(int node, int b, int e, int i, int j)
     if (i <= b and j >= e)
         return t[node];
 
-    ll l = 2 * node, r = 2 * node + 1;
-    ll mid = (b + e) / 2;
-    return max(query(l, b, mid, i, j), query(r, mid + 1, e, i, j));
+    int l = 2 * node, r = 2 * node + 1;
+    int mid = (b + e) / 2;
+    return min(query(l, b, mid, i, j), query(r, mid + 1, e, i, j));
 }
 
 int32_t main()
@@ -85,7 +85,6 @@ int32_t main()
     cin >> n >> q;
 
     build(1, 1, n);
-
     while (q--)
     {
         int ty;
@@ -99,10 +98,10 @@ int32_t main()
         }
         else
         {
-            int l;
-            cin >> l;
+            int l, r;
+            cin >> l >> r;
             l++;
-            cout << query(1, 1, n, l, l) << '\n';
+            cout << query(1, 1, n, l, r) << '\n';
         }
     }
     return 0;

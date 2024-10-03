@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 using namespace std;
 #define MTK                       \
@@ -17,9 +18,9 @@ ll t[N * 4], lazy[4 * N];
 
 void push(int node, int b, int e)
 {
-    if (lazy[node] == 0)
+    if (lazy[node] == 1)
         return;
-    t[node] = (t[node] * lazy[node]) % mod;
+    t[node] = (t[node] * lazy[node] % mod);
 
     if (b != e)
     {
@@ -28,15 +29,15 @@ void push(int node, int b, int e)
         lazy[l] = (lazy[l] * lazy[node]) % mod;
         lazy[r] = (lazy[r] * lazy[node]) % mod;
     }
-    lazy[node] = 0;
+    lazy[node] = 1;
 }
 
 void build(int node, int b, int e)
 {
-    lazy[node] = 0;
+    lazy[node] = 1;
     if (b == e)
     {
-        t[node] = a[b];
+        t[node] = 1; // chage this position
         return;
     }
     int mid = (b + e) / 2;
@@ -44,19 +45,6 @@ void build(int node, int b, int e)
     build(l, b, mid);
     build(r, mid + 1, e);
     t[node] = (t[l] + t[r]) % mod;
-}
-
-ll query(int node, int b, int e, int i, int j)
-{
-    push(node, b, e);
-    if (e < i or j < b)
-        return 1;
-    if (i <= b and j >= e)
-        return t[node] % mod;
-
-    int l = 2 * node, r = 2 * node + 1;
-    int mid = (b + e) / 2;
-    return (query(l, b, mid, i, j) + query(r, mid + 1, e, i, j)) % mod;
 }
 
 void update(int node, int b, int e, int i, int j, int v)
@@ -79,6 +67,19 @@ void update(int node, int b, int e, int i, int j, int v)
     t[node] = (t[l] + t[r]) % mod;
 }
 
+ll query(int node, int b, int e, int i, int j)
+{
+    push(node, b, e);
+    if (e < i or j < b)
+        return 0;
+    if (i <= b and j >= e)
+        return t[node];
+
+    int l = 2 * node, r = 2 * node + 1;
+    int mid = (b + e) / 2;
+    return (query(l, b, mid, i, j) + query(r, mid + 1, e, i, j)) % mod;
+}
+
 int32_t main()
 {
     MTK;
@@ -86,14 +87,14 @@ int32_t main()
     cin >> n >> q;
 
     build(1, 1, n);
-    // // cout << t[1] << '\n';
-    // cout << query(1, 1, n, 2, 5) << '\n';
+
     while (q--)
     {
         int ty;
         cin >> ty;
         if (ty == 1)
         {
+
             int l, r, v;
             cin >> l >> r >> v;
             l++;
