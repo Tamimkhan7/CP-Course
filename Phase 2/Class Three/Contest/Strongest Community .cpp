@@ -22,7 +22,7 @@ void build(int node, int b, int e)
     int mid = (b + e) / 2;
     build(l, b, mid);
     build(r, mid + 1, e);
-    t[node] = t[l] + t[r];
+    t[node] = merge([l], t[r]);
 }
 
 int query(int node, int b, int e, int i, int j)
@@ -33,7 +33,7 @@ int query(int node, int b, int e, int i, int j)
         return t[node];
     int l = 2 * node, r = 2 * node + 1;
     int mid = (b + e) / 2;
-    return query(l, b, mid, i, j) + query(r, mid + 1, e, i, j);
+    return merge(query(l, b, mid, i, j), query(r, mid + 1, e, i, j));
 }
 
 int32_t main()

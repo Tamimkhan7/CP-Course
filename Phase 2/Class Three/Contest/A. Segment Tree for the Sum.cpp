@@ -15,24 +15,24 @@ ll t[N * 4];
 
 void build(int node, int b, int e)
 {
-    if (b == e)
+    if (b == e) // jodi last index a cole asi, mane holo beginnig and ending is equal hoy tahole oii value ta update kore dite hobe
     {
         t[node] = a[b];
         return;
     }
     int l = node * 2, r = node * 2 + 1;
     int mid = (b + e) / 2;
-    build(l, b, mid);
-    build(r, mid + 1, e);
-    t[node] = t[l] + t[r];
+    build(l, b, mid);      // left a giye check korbo
+    build(r, mid + 1, e);  // right a giye check korbo
+    t[node] = t[l] + t[r]; // oi range a thake tahole add kore dibo
 }
 
 ll query(int node, int b, int e, int i, int j)
 {
-    if (i > e or j < b)
+    if (i > e or j < b) // jodi oi range a na thake tahole to kicu return korar dorkar nai,, tahole 0 return kore dibo
         return 0;
     if (i <= b and j >= e)
-        return t[node];
+        return t[node]; // jodi oi range ar modde thake tahole oi node ar value ta return kore dibo
     int l = node * 2, r = node * 2 + 1;
     int mid = (b + e) / 2;
     return query(l, b, mid, i, j) + query(r, mid + 1, e, i, j);
@@ -41,10 +41,10 @@ ll query(int node, int b, int e, int i, int j)
 void update(int node, int b, int e, int i, int x)
 {
     if (b > i or i > e)
-        return;
+        return; // jodi oi range ar modde na thake tahole kicu add kora dorkar nai
     if (b == e and b == i)
     {
-        t[node] = x;
+        t[node] = x; // jodi oi range ar modde thaole tahole oi range ke x ar value dara  update kore dibo
         return;
     }
     int l = node * 2, r = node * 2 + 1;
@@ -63,9 +63,9 @@ int32_t main()
     build(1, 1, n);
     while (q--)
     {
-        int x;
-        cin >> x;
-        if (x == 1)
+        int ty;
+        cin >> ty;
+        if (ty == 1)
         {
             int i, v;
             cin >> i >> v;

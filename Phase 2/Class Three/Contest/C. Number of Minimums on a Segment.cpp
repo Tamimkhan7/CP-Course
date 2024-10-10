@@ -10,50 +10,68 @@ using namespace std;
 #define ll int long long
 #define mod 1000000007
 const int N = 1e5 + 9, MAX = 1e9 + 9;
-
 int a[N];
-ll t[N * 4];
 
-void build(int node, int b, int e)
+struct node
+{
+    int mn, count;
+};
+
+node t[N * 4];
+node merge(node l, node r)
+{ // left node, and right node
+    node ans;
+    ans.mn = min(l.mn, r.mn);
+    ans.count = 0;
+    if (l.mn == ans.mn)
+        ans.count += l.count;
+    if (r.mn == ans.mn)
+        ans.count += r.count;
+    return ans;
+}
+void build(int n, int b, int e)
 {
     if (b == e)
     {
-        t[node] = a[b];
+        t[n].mn = a[b]; // 1 length ar hole minimum value oy nijeii
+        t[n].count = 1; // 1 length ar hole minimum oy nijeiii
         return;
     }
-    int l = node * 2, r = node * 2 + 1;
+    int l = n * 2, r = n * 2 + 1;
     int mid = (b + e) / 2;
     build(l, b, mid);
     build(r, mid + 1, e);
-    t[node] = min(t[l], t[r]);
+    t[n] = merge(t[l], t[r]);
 }
-
-ll query(int node, int b, int e, int i, int j)
-{
-    if (i > e or j < b)
-        return MAX; // resone 0 dile 0 cole ase amn max value dite hote jate oitar choto jei kono value count korte pare
-    if (i <= b and j >= e)
-        return t[node];
-    int l = node * 2, r = node * 2 + 1;
-    int mid = (b + e) / 2;
-    return min(query(l, b, mid, i, j), query(r, mid + 1, e, i, j));
-}
-
-void update(int node, int b, int e, int i, int x)
+void update(int n, int b, int e, int i, int x)
 {
     if (b > i or i > e)
         return;
-    if (b == e and b == i)
+    if (b == e)
     {
-        t[node] = x;
+        t[n].mn = x;
+        t[n].count = 1;
         return;
     }
-    int l = node * 2, r = node * 2 + 1;
+    int l = n * 2, r = n * 2 + 1;
     int mid = (b + e) / 2;
     update(l, b, mid, i, x);
     update(r, mid + 1, e, i, x);
-    t[node] = min(t[l], t[r]);
+    t[n] = merge(t[l], t[r]);
 }
+
+node query(int n, int b, int e, int i, int j)
+{
+    if (i > e or j < b)
+        return {MAX, 1}; // max deoyar mane hole minimum value khujteci ar oi value gular count khujteci ai jonno 1 diye start korci
+    if (i <= b and j >= e)
+        return t[n];
+
+    int l = n * 2, r = n * 2 + 1;
+    int mid = (b + e) / 2;
+    return merge(query(l, b, mid, i, j), query(r, mid + 1, e, i, j));
+}
+
 int32_t main()
 {
     MTK;
@@ -64,9 +82,9 @@ int32_t main()
     build(1, 1, n);
     while (q--)
     {
-        int x;
-        cin >> x;
-        if (x == 1)
+        int ty;
+        cin >> ty;
+        if (ty == 1)
         {
             int i, v;
             cin >> i >> v;
@@ -78,7 +96,8 @@ int32_t main()
             int l, r;
             cin >> l >> r;
             ++l;
-            cout << query(1, 1, n, l, r) << ' ' << query(1, 1, n, l, r) << '\n';
+            node ans = query(1, 1, n, l, r);
+            cout << ans.mn << ' ' << ans.count << '\n';
         }
     }
     return 0;

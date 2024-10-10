@@ -11,6 +11,7 @@ using namespace std;
 #define mod 1000000007
 const int N = 1e5 + 9;
 int a[N], t[N * 4];
+vector<pair<int, int>> v;
 
 void build(int node, int b, int e)
 {
@@ -26,21 +27,6 @@ void build(int node, int b, int e)
     t[node] = t[l] + t[r];
 }
 
-void update(int node, int b, int e, int i, int x)
-{
-    if (b > i or i > e)
-        return;
-    if (b == e and b == i)
-    {
-        t[node] += x;
-        return;
-    }
-    int l = 2 * node, r = 2 * node + 1;
-    int mid = (b + e) / 2;
-    update(l, b, mid, i, x);
-    update(r, mid + 1, e, i, x);
-    t[node] = t[l] + t[r];
-}
 int query(int node, int b, int e, int i, int j)
 {
     if (e < i or j < b)
@@ -61,9 +47,17 @@ int32_t main()
         cout << "Case " << ++cs << ":" << '\n';
         int n, q;
         cin >> n >> q;
-
+        vector<pair<int, int>> v;
+        for (int i = 0; i < n; i++)
+        {
+            int a, b;
+            cin >> a >> b;
+            v.push_back({a, b});
+        }
         while (q--)
         {
+            int x;
+            cin >> x;
         }
     }
     return 0;
