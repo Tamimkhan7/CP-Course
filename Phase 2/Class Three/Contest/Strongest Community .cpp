@@ -10,28 +10,63 @@ using namespace std;
 #define ll int long long
 #define mod 1000000007
 const int N = 1e5 + 9;
-int a[N], t[N * 4];
-void build(int node, int b, int e)
+int a[N];
+struct node
+{
+    int first_element, last_element;
+    int first_element_occ, last_element_occ;
+    int stronest_community_size;
+};
+node t[4 * N];
+
+node merge(node l, node r)
+{
+    if (l.first_element == -1)
+        return r;
+    if (r.first_element == -1)
+        return l;
+
+    node ans;
+    ans.first_element = l.first_element;
+    ans.first_element_occ = l.first_element_occ;
+    if (l.first_element == r.first_element)
+        ans.first_element_occ += r.first_element_occ;
+
+    ans.last_element = r.last_element;
+    ans.last_element_occ = r.last_element_occ;
+    if (r.last_element == l.last_element)
+        ans.last_element_occ += l.last_element_occ;
+
+    ans.stronest_community_size = max(l.stronest_community_size, r.stronest_community_size);
+    if (l.last_element == r.first_element)
+        ans.stronest_community_size = max(ans.stronest_community_size, l.last_element_occ + r.first_element_occ);
+
+    return ans;
+}
+
+void build(int n, int b, int e)
 {
     if (b == e)
     {
-        t[node] = a[b];
+        t[n].first_element = t[n].last_element = a[b];
+        t[n].first_element_occ = t[n].last_element_occ = 1;
+        t[n].stronest_community_size = 1;
         return;
     }
-    int l = 2 * node, r = 2 * node + 1;
+    int l = 2 * n, r = 2 * n + 1;
     int mid = (b + e) / 2;
     build(l, b, mid);
     build(r, mid + 1, e);
-    t[node] = merge([l], t[r]);
+    t[n] = merge(t[l], t[r]);
 }
 
-int query(int node, int b, int e, int i, int j)
+node query(int n, int b, int e, int i, int j)
 {
     if (e < i or j < b)
-        return 0;
+        return {-1, -1, -1, -1, -1}; // for ignoring
     if (i <= b and j >= e)
-        return t[node];
-    int l = 2 * node, r = 2 * node + 1;
+        return t[n];
+    int l = 2 * n, r = 2 * n + 1;
     int mid = (b + e) / 2;
     return merge(query(l, b, mid, i, j), query(r, mid + 1, e, i, j));
 }
@@ -53,7 +88,8 @@ int32_t main()
         {
             int l, r;
             cin >> l >> r;
-            cout << query(1, 1, n, l, r) << '\n';
+            node ans = query(1, 1, n, l, r);
+            cout << ans.stronest_community_size << '\n';
         }
     }
     return 0;
