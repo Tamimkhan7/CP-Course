@@ -86,15 +86,12 @@ int32_t main()
     cin >> n >> q;
 
     build(1, 1, n);
-    // // cout << t[1] << '\n';
-    // cout << query(1, 1, n, 2, 5) << '\n';
     while (q--)
     {
         int ty;
         cin >> ty;
         if (ty == 1)
         {
-
             int l, r, v;
             cin >> l >> r >> v;
             l++;

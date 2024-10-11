@@ -1,4 +1,3 @@
-
 #include <bits/stdc++.h>
 using namespace std;
 #define MTK                       \
@@ -12,31 +11,31 @@ using namespace std;
 #define mod 1000000007
 
 const int N = 1e5 + 9;
-const int INF = 1e14 + 9;
 int a[N];
-ll t[N * 4], lazy[4 * N];
+int t[N * 4], lazy[4 * N];
 
 void push(int node, int b, int e)
 {
-    if (lazy[node] == 1)
+    if (lazy[node] == 1) // reason amar initial value is 1
         return;
-    t[node] = (t[node] * lazy[node] % mod);
+    t[node] = (1LL * t[node] * lazy[node] % mod);
 
     if (b != e)
     {
         int mid = (b + e) / 2;
         int l = 2 * node, r = 2 * node + 1;
-        lazy[l] = (lazy[l] * lazy[node]) % mod;
-        lazy[r] = (lazy[r] * lazy[node]) % mod;
+        lazy[l] = (1LL * lazy[l] * lazy[node]) % mod;
+        lazy[r] = (1LL * lazy[r] * lazy[node]) % mod;
     }
     lazy[node] = 1;
 }
 
 void build(int node, int b, int e)
 {
-    lazy[node] = 1;
+    lazy[node] = 1; // initial value is 1 with every element
     if (b == e)
     {
+        // initially each element assign into the 1
         t[node] = 1; // chage this position
         return;
     }
@@ -67,7 +66,7 @@ void update(int node, int b, int e, int i, int j, int v)
     t[node] = (t[l] + t[r]) % mod;
 }
 
-ll query(int node, int b, int e, int i, int j)
+int query(int node, int b, int e, int i, int j)
 {
     push(node, b, e);
     if (e < i or j < b)
@@ -85,16 +84,13 @@ int32_t main()
     MTK;
     int n, q;
     cin >> n >> q;
-
     build(1, 1, n);
-
     while (q--)
     {
         int ty;
         cin >> ty;
         if (ty == 1)
         {
-
             int l, r, v;
             cin >> l >> r >> v;
             l++;

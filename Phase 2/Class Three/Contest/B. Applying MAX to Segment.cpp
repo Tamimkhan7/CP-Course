@@ -11,7 +11,7 @@ using namespace std;
 #define mod 1000000007
 
 const int N = 1e5 + 9;
-const ll INF = -1e18 + 9;
+// const ll INF = -1e18 + 9;
 int a[N];
 ll t[N * 4], lazy[4 * N];
 
@@ -32,8 +32,7 @@ void push(int node, int b, int e)
 
 void build(int node, int b, int e)
 {
-    lazy[node] = 0;
-    if (b == e)
+       if (b == e)
     {
         t[node] = a[b];
         return;
@@ -69,7 +68,7 @@ ll query(int node, int b, int e, int i, int j)
 {
     push(node, b, e);
     if (e < i or j < b)
-        return INF;
+        return 0;
     if (i <= b and j >= e)
         return t[node];
 

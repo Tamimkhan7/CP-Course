@@ -11,21 +11,21 @@ using namespace std;
 #define mod 1000000007
 
 const int N = 1e5 + 9;
-const ll INF = 1e14;
+const int INF = 1e9 + 9;
 int a[N];
-ll t[N * 4], lazy[4 * N];
+int t[N * 4], lazy[4 * N];
 
 void push(int node, int b, int e)
 {
     if (lazy[node] == -1)
         return;
-    t[node] =  lazy[node];
+    t[node] = lazy[node];
     if (b != e)
     {
         int mid = (b + e) / 2;
         int l = 2 * node, r = 2 * node + 1;
-        lazy[l] = min(lazy[l], lazy[node]);
-        lazy[r] = min(lazy[r], lazy[node]);
+        lazy[l] = lazy[node];
+        lazy[r] = lazy[node];
     }
     lazy[node] = -1;
 }

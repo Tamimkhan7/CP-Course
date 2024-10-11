@@ -31,7 +31,7 @@ void push(int node, int b, int e)
 
 void build(int node, int b, int e)
 {
-    lazy[node] = -1;
+    // lazy[node] = -1;
     if (b == e)
     {
         t[node] = a[b];
