@@ -11,13 +11,12 @@ using namespace std;
 #define mod 1000000007
 
 const int N = 1e5 + 9;
-const ll INF = 1e14;
 int a[N];
 ll t[N * 4], lazy[N * 4];
 
 void push(int node, int b, int e)
 {
-    if (lazy[node] == 1)
+    if (lazy[node] == 0)
         return;
     t[node] = t[node] | lazy[node];
     if (b != e)
@@ -27,15 +26,15 @@ void push(int node, int b, int e)
         lazy[l] = (lazy[l] | lazy[node]);
         lazy[r] = (lazy[r] | lazy[node]);
     }
-    lazy[node] = 1;
+    lazy[node] = 0;
 }
 
 void build(int node, int b, int e)
 {
-    lazy[node] = 1;
+    lazy[node] = 0;
     if (b == e)
     {
-        t[node] = a[b];
+        t[node] = a[b]; // that is indicate zero value because that is decleare globally
         return;
     }
     int mid = (b + e) / 2;
@@ -57,7 +56,6 @@ void update(int node, int b, int e, int i, int j, int v)
         push(node, b, e);
         return;
     }
-
     int mid = (b + e) / 2;
     int l = 2 * node, r = 2 * node + 1;
     update(l, b, mid, i, j, v);
@@ -69,7 +67,7 @@ ll query(int node, int b, int e, int i, int j)
 {
     push(node, b, e);
     if (e < i or j < b)
-        return 1;
+        return (1 << 30) - 1; // doesn't exit this value
     if (i <= b and j >= e)
         return t[node];
 
