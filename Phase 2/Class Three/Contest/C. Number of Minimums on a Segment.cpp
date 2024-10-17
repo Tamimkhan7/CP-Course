@@ -40,7 +40,7 @@ void build(int n, int b, int e)
     int l = n * 2, r = n * 2 + 1;
     int mid = (b + e) / 2;
     build(l, b, mid);
-    build(r, mid + 1, e);
+    build(r, mid + node1, e);
     t[n] = merge(t[l], t[r]);
 }
 void update(int n, int b, int e, int i, int x)
