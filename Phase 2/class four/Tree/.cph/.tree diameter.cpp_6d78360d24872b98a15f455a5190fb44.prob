@@ -1,0 +1,1 @@
+{"name":"Local: tree diameter","url":"/home/tamim/Desktop/CP course/Phase 2/class four/Tree/tree diameter.cpp","tests":[{"id":1729629637533,"input":"5\n1 2\n2 3\n2 4\n3 5","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/tamim/Desktop/CP course/Phase 2/class four/Tree/tree diameter.cpp","group":"local","local":true}
