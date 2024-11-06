@@ -25,9 +25,9 @@ int32_t main()
     MTK;
     string a, b;
     cin >> a >> b;
-   if(a==b)
-       cout << a << '\n';
-       else
-           cout << 1 << '\n';
-       return 0;
+    if (a == b)
+        cout << a << '\n';
+    else
+        cout << 1 << '\n';
+    return 0;
 }
