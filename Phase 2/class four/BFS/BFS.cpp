@@ -45,7 +45,7 @@ int32_t main()
             }
         }
     }
-   
+
     // cout << layer << '\n';
     return 0;
 }
