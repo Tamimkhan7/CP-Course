@@ -20,7 +20,6 @@ int32_t main()
     MTK;
     int n, m;
     cin >> n >> m;
-    int x = n;
     while (m--)
     {
         int u, v;
@@ -46,18 +45,19 @@ int32_t main()
             }
         }
     }
-    vector<int> ans;
-    while (n > 0)
+    vector<int> path;
+    int u = n;
+    while (u != 0)
     {
-        ans.push_back(n);
-        n = par[n];
+        path.push_back(u);
+        u = par[u];
     }
-    reverse(all(ans));
-    // cout << ans[0] << ' ' <<  << '\n';
-    if (ans[0] == 1 and ans[ans.size() - 1] == x)
+    reverse(all(path));
+    // cout << path[0] << ' ' <<  << '\n';
+    if (path[0] == 1 and path[path.size() - 1] == n) // first path is 1 and last path is n, must be is it do that
     {
-        cout << ans.size() << '\n';
-        for (auto x : ans)
+        cout << path.size() << '\n';
+        for (auto x : path)
             cout << x << ' ';
         cout << '\n';
     }
