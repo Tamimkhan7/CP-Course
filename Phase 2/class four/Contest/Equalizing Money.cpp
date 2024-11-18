@@ -9,71 +9,63 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define ll int long long
 #define mod 1000000007
-
 const int N = 1005;
 vector<int> g[N];
-bool vis[N];
 int money[N];
-int tot_money, tot_person;
+bool vis[N];
+int total_money, total_person;
 
 void dfs(int u)
 {
     vis[u] = true;
-    tot_person++;
-    tot_money += money[u];
+    total_person++;
+    total_money += money[u];
     for (auto v : g[u])
     {
         if (!vis[v])
             dfs(v);
     }
 }
-
 void solve()
 {
     int n, m;
     cin >> n >> m;
-
     for (int i = 1; i <= n; i++)
     {
         cin >> money[i];
-        vis[i] = false;
         g[i].clear();
+        vis[i] = false;
     }
-
-    for (int i = 1; i <= m; i++)
+    for (int i = 0; i < m; i++)
     {
         int u, v;
         cin >> u >> v;
         g[u].push_back(v);
         g[v].push_back(u);
     }
-
     set<int> se;
     for (int i = 1; i <= n; i++)
     {
         if (!vis[i])
         {
-            tot_person = 0;
-            tot_money = 0;
+            total_money = total_person = 0;
             dfs(i);
-
-            if (tot_money % tot_person == 0)
+            if (total_money % total_person == 0)
             {
-                int number_of_person = tot_money / tot_person;
-                se.insert(number_of_person);
+                int each_person_get_money = total_money / total_person;
+                se.insert(each_person_get_money);
             }
             else
             {
-                cout << "No\n";
+                cout << "No" << '\n';
                 return;
             }
         }
     }
-
     if (se.size() == 1)
-        cout << "Yes\n";
+        cout << "Yes" << '\n';
     else
-        cout << "No\n";
+        cout << "No" << '\n';
 }
 int32_t main()
 {

@@ -14,12 +14,12 @@ using namespace std;
 const int N = 1e5 + 9;
 vector<int> g[N];
 bool vis[N];
-int vv[N], m, ans;
-int consecutive_cats[N];
+int consecutive_cats[N], cat[N];
+int m, ans;
+
 void dfs(int u, int cnt)
 {
-
-    if (vv[u])
+    if (cat[u])
         consecutive_cats[u] = consecutive_cats[cnt] + 1;
     else
         consecutive_cats[u] = 0;
@@ -46,7 +46,7 @@ int32_t main()
     int n;
     cin >> n >> m;
     for (int i = 1; i <= n; i++)
-        cin >> vv[i];
+        cin >> cat[i];
 
     for (int i = 1; i < n; i++)
     {
