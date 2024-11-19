@@ -10,18 +10,20 @@ using namespace std;
 #define ll int long long
 #define mod 1000000007
 
-const int N = 105;
+const int N = 105, inf = 1e9;
 vector<int> g[N];
 bool vis[N];
-int dis[N];
+int n;
 
-void bfs(int s, int n)
+vector<int> bfs(int s)
 {
-    mem(dis, 0);
+    vector<int> dis(n, inf);
     mem(vis, false);
+
     queue<int> q;
     q.push(s);
     vis[s] = true;
+    dis[s] = 0;
 
     while (!q.empty())
     {
@@ -37,6 +39,7 @@ void bfs(int s, int n)
             }
         }
     }
+    return dis;
 }
 
 int32_t main()
@@ -47,7 +50,7 @@ int32_t main()
     while (t--)
     {
         cout << "Case " << ++cs << ": ";
-        int n, r;
+        int r;
         cin >> n >> r;
 
         for (int i = 0; i < n; i++)
@@ -64,15 +67,15 @@ int32_t main()
         int s, d;
         cin >> s >> d;
 
-        bfs(s, n);
-        vector<int> dist_from_s(dis, dis + n);
+        auto ds = bfs(s);
+        // vector<int> dist_from_s(dis, dis + n);
 
-        bfs(d, n);
-        vector<int> dist_from_d(dis, dis + n);
+        auto de = bfs(d);
+        // vector<int> dist_from_d(dis, dis + n);
 
         int ans = 0;
         for (int i = 0; i < n; i++)
-            ans = max(ans, dist_from_s[i] + dist_from_d[i]);
+            ans = max(ans, ds[i] + de[i]);
 
         cout << ans << '\n';
     }

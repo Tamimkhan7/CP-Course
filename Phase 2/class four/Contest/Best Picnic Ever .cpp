@@ -15,6 +15,17 @@ vector<int> g[N];
 bool vis[N];
 int dis[N], cnt[N];
 
+void dfs(int u)
+{
+    vis[u] = true;
+    cnt[u]++;
+    for (auto v : g[u])
+    {
+        if (!vis[v])
+            dfs(v);
+    }
+}
+
 int32_t main()
 {
     MTK;
@@ -36,28 +47,35 @@ int32_t main()
         }
         for (int i = 1; i <= k; i++)
         {
-            queue<int> q;
+            // for (int u = 1; u <= n; u++)
+            //     vis[u] = false;
             mem(vis, false);
-            int x = v[i];
-            q.push(x);
-            vis[x] = true;
-
-            while (!q.empty())
-            {
-                int u = q.front();
-                cnt[u]++;
-                // show(cnt[u]);
-                q.pop();
-                for (auto v : g[u])
-                {
-                    if (!vis[v])
-                    {
-                        q.push(v);
-                        vis[v] = true;
-                    }
-                }
-            }
+            dfs(v[i]);
         }
+        // for (int i = 1; i <= k; i++)
+        // {
+        //     queue<int> q;
+        //     mem(vis, false);
+        //     int x = v[i];
+        //     q.push(x);
+        //     vis[x] = true;
+
+        //     while (!q.empty())
+        //     {
+        //         int u = q.front();
+        //         cnt[u]++;
+        //         // show(cnt[u]);
+        //         q.pop();
+        //         for (auto v : g[u])
+        //         {
+        //             if (!vis[v])
+        //             {
+        //                 q.push(v);
+        //                 vis[v] = true;
+        //             }
+        //         }
+        //     }
+        // }
         int ans = 0;
         for (int p = 1; p <= n; p++)
         {
@@ -67,10 +85,10 @@ int32_t main()
                 ans++;
             }
         }
+        cout << ans << '\n';
         mem(vis, false);
         mem(cnt, 0);
         mem(g, 0);
-        cout << ans << '\n';
     }
     return 0;
 }
