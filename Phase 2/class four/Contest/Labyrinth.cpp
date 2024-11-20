@@ -80,16 +80,16 @@ int32_t main()
     for (int i = 0; i < n; i++)
         cin >> s[i];
 
-    int x, y;
+    int start_i, start_j;
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
         {
             if (s[i][j] == 'A')
-                x = i, y = j;
+                start_i = i, start_j = j;
         }
     }
-    bfs(x, y);
+    bfs(start_i, start_j);
     if (!ok)
         cout << "NO" << '\n';
 }

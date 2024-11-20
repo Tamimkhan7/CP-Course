@@ -21,7 +21,7 @@ bool is_valid(int i, int j)
 {
     return i >= 0 and i < n and j >= 0 and j < m;
 }
-
+ 
 void dfs(int i, int j)
 {
     cnt++;

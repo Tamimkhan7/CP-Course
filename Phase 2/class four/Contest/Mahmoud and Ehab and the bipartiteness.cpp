@@ -40,15 +40,11 @@ int32_t main()
         g[u].push_back(v);
         g[v].push_back(u);
     }
-    for (int i = 1; i <= n; i++)
-    {
-        if (!vis[i])
-        {
-            col[i] = 0;
-            dfs(i);
-        }
-    }
-    ll va = 1LL * val[1] * val[0];
+    col[1] = 0;
+    dfs(1);
+    // total number of node of a tree is n, if a tree is total number of n node then total number of edge of a tree is n-1
+    // total number of node red and blue color of a tree, is number of red  * number of blue
+    ll va = 1LL * val[1] * val[0]; // 1 means is it red color, 0 means is it blue color
     ll ans = va - (n - 1);
     cout << ans << '\n';
     return 0;
