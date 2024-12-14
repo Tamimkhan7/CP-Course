@@ -11,26 +11,34 @@ using namespace std;
 #define mod 1000000007
 
 const int N = 1e5 + 9;
-vector<int> g[N];
-int col[N];
-bool cycle = false, vis[N];
-vector<int> val;
-void dfs(int u)
+vector<int> g[N], val;
+bool cycle, vis[N];
+int par[N];
+
+void dfs(int u, int p)
 {
-    col[u] = 0;
+    if (cycle)
+        return;
+    par[u] = p;
     vis[u] = true;
-    val.push_back(u);
     for (auto v : g[u])
     {
+        if (cycle)
+            return;
         if (!vis[v])
+            dfs(v, u);
+
+        else if (p != v)
         {
-            col[v] = col[u] ^ 1;
-            dfs(v);
-        }
-        else if (col[v] == col[u])
-        {
-            val.push_back(v);
+            int st = u;
             cycle = true;
+            while (u != v)
+            {
+                val.push_back(u);
+                u = par[u];
+            }
+            val.push_back(v);
+            val.push_back(st); // first parent store to the vactor
             return;
         }
     }
@@ -40,7 +48,7 @@ int32_t main()
     MTK;
     int n, m;
     cin >> n >> m;
-    while (m--)
+    for (int i = 1; i <= m; i++)
     {
         int u, v;
         cin >> u >> v;
@@ -52,26 +60,18 @@ int32_t main()
     {
         if (!vis[i])
         {
-            dfs(1);
+            dfs(i, 0);
             if (cycle)
-                break;
-            val.clear();
-            for (int i = 0; i < n; i++)
             {
-                vis[i] = false;
-                col[i] = 0;
+                cout << val.size() << '\n';
+                for (auto x : val)
+                    cout << x << ' ';
+                cout << '\n';
+                return 0;
             }
         }
     }
 
-    if (cycle)
-    {
-        cout << val.size() << '\n';
-        for (auto x : val)
-            cout << x << ' ';
-        cout << '\n';
-    }
-    else
-        cout << "IMPOSSIBLE" << '\n';
+    cout << "IMPOSSIBLE" << '\n';
     return 0;
 }

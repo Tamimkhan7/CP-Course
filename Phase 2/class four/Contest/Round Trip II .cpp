@@ -4,43 +4,50 @@ using namespace std;
     ios_base::sync_with_stdio(0); \
     cin.tie(0);                   \
     cout.tie(0);
-#define mem(a, b) memset(a, b, sizeof(a))
-#define show(x) cout << #x << ' ' << x << endl
 #define all(x) (x).begin(), (x).end()
 #define ll int long long
-#define mod 1000000007
 
 const int N = 1e5 + 9;
-vector<int> g[N];
-int col[N];
-bool cycle = false, vis[N];
-vector<int> val;
+vector<int> g[N], val;
+bool cycle;
+int col[N], par[N];
+
 void dfs(int u)
 {
-    col[u] = 0;
-    vis[u] = true;
-    val.push_back(u);
+    col[u] = 1;
     for (auto v : g[u])
     {
-        if (!vis[v])
+        if (!col[v])
         {
-            col[v] = col[u] ^ 1;
+            par[v] = u;
             dfs(v);
+            if (cycle)
+                return;
         }
-        else if (col[v] == col[u])
+        else if (col[v] == 1)
         {
-            val.push_back(v);
             cycle = true;
+            int cur = u;
+            val.push_back(v);
+            while (cur != v)
+            {
+                val.push_back(cur);
+                cur = par[cur];
+            }
+            val.push_back(v);
+            reverse(all(val));
             return;
         }
     }
+    col[u] = 2;
 }
+
 int32_t main()
 {
     MTK;
     int n, m;
     cin >> n >> m;
-    while (m--)
+    for (int i = 1; i <= m; i++)
     {
         int u, v;
         cin >> u >> v;
@@ -49,28 +56,20 @@ int32_t main()
 
     for (int i = 1; i <= n; i++)
     {
-        if (!vis[i])
+        if (!col[i])
         {
-            dfs(1);
+            dfs(i);
             if (cycle)
-                break;
-            val.clear();
-            for (int i = 0; i < n; i++)
             {
-                vis[i] = false;
-                col[i] = 0;
+                cout << val.size() << '\n';
+                for (auto x : val)
+                    cout << x << ' ';
+                cout << '\n';
+                return 0;
             }
         }
     }
 
-    if (cycle)
-    {
-        cout << val.size() << '\n';
-        for (auto x : val)
-            cout << x << ' ';
-        cout << '\n';
-    }
-    else
-        cout << "IMPOSSIBLE" << '\n';
+    cout << "IMPOSSIBLE" << '\n';
     return 0;
 }
