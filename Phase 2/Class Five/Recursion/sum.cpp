@@ -10,19 +10,12 @@ using namespace std;
 #define ll int long long
 #define mod 1000000007
 
-const int N = 55;
-int f[N]; // for storing value
-bool is_computed[N];
-
-int fibo(int n)
+int sum(int n)
 {
-    if (n == 0 || n == 1)
+    if (n == 0)
         return n;
-    if (is_computed[n])
-        return f[n];
-    f[n] = fibo(n - 1) + fibo(n - 2);
-    is_computed[n] = true;
-    return f[n];
+    int ans = sum(n - 1);
+    return ans + n;
 }
 
 int32_t main()
@@ -30,7 +23,10 @@ int32_t main()
     MTK;
     int n;
     cin >> n;
-    int res = fibo(n);
+    int res = sum(n);
     cout << res << '\n';
     return 0;
 }
+
+
+4---3---2---1---0

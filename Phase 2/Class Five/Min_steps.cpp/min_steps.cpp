@@ -13,24 +13,26 @@ int step[N];
 int min_steps(int n)
 {
     if (n == 1)
-        return 0;
+    return 0;
     // bascially check korte hobe age oi value ta save a ace kina
-    if (step[n] != -1)
-        return step[n];
+    // if (step[n] != -1)
+    //     return step[n];
     int ans = min_steps(n - 1) + 1;
     if (n % 2 == 0)
-        ans = min(ans, min_steps(n / 2) + 1);
+    ans = min(ans, min_steps(n / 2) + 1);
     if (n % 3 == 0)
-        ans = min(ans, min_steps(n / 3) + 1);
-    step[n] = ans; // just memorized kora rakhteci ai step ar jonno value koto
-    return step[n];
+    ans = min(ans, min_steps(n / 3) + 1);
+    show(n);
+    show(ans);
+    // step[n] = ans; // just memorized kora rakhteci ai step ar jonno value koto
+    return ans;
 }
 int32_t main()
 {
     MTK;
     int n;
     cin >> n;
-    mem(step, -1);
+    // mem(step, -1);
     cout << min_steps(n) << '\n';
     return 0;
 }
