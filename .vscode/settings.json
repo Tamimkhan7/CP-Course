@@ -27,6 +27,9 @@
     "*.tcc": "cpp",
     "ostream": "cpp",
     "type_traits": "cpp",
-    "tuple": "cpp"
+    "tuple": "cpp",
+    "barrier": "cpp",
+    "latch": "cpp",
+    "semaphore": "cpp"
   }
 }

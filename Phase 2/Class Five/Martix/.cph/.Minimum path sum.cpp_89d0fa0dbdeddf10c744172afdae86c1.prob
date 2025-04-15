@@ -1,0 +1,1 @@
+{"name":"Local: Minimum path sum","url":"/home/tamim/Desktop/CP course/Phase 2/Class Five/Martix/Minimum path sum.cpp","tests":[{"id":1744708299737,"input":"3 3\n1 2 3\n8 1 10\n1 9 2","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/tamim/Desktop/CP course/Phase 2/Class Five/Martix/Minimum path sum.cpp","group":"local","local":true}
