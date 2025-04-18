@@ -5,33 +5,31 @@ using namespace std;
     cin.tie(0);                   \
     cout.tie(0);
 #define mem(a, b) memset(a, b, sizeof(a))
-#define show(x) cout << #x << ' ' << x << endl
 #define all(x) (x).begin(), (x).end()
 #define ll int long long
 #define mod 1000000007
 
-const int N = 1e1 + 9;
-int a[N];
-int dp[N];
+const int N = 105, X = 1e6 + 5, inf = 1e9 + 9;
+int a[N], dp[X];
+int n, x;
 
 int32_t main()
 {
     MTK;
-    int n;
-    cin >> n;
+    cin >> n >> x;
     for (int i = 1; i <= n; i++)
         cin >> a[i];
-    int ans = 0;
+
+    for (int i = 1; i <= x; i++)
+        dp[i] = inf;
+    dp[0] = 0;
+
     for (int i = 1; i <= n; i++)
     {
-        dp[i] = 1;
-        for (int j = 1; j < i; j++)
-        {
-            if (a[i] > a[j])
-                dp[i] = max(dp[i], dp[j] + 1);
-        }
-        ans = max(ans, dp[i]);
+        for (int j = a[i]; j <= x; j++)
+            dp[j] = min(dp[j], dp[j - a[i]] + 1);
     }
-    cout << ans << '\n';
+
+    cout << (dp[x] >= inf ? -1 : dp[x]) << '\n';
     return 0;
 }
