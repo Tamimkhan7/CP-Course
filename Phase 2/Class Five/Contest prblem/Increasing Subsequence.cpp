@@ -27,7 +27,7 @@ int LS(int n)
             ans = max(ans, LS(j) + 1);
     }
     return dp[n] = ans;
-} 
+}
 int32_t main()
 {
     MTK;

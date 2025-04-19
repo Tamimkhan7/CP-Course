@@ -31,6 +31,7 @@
     "barrier": "cpp",
     "latch": "cpp",
     "semaphore": "cpp",
-    "charconv": "cpp"
+    "charconv": "cpp",
+    "atomic": "cpp"
   }
 }
