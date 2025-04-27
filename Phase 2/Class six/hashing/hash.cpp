@@ -10,7 +10,7 @@ using namespace std;
 #define ll int long long
 #define mod 1000000007
 
-// p is a prime number,we can calculate the prime number because is it safe zone
+// p is a prime number,we can use the prime number because is it safe zone
 const int p = 137, N = 1e5;
 int pw[N];
 
